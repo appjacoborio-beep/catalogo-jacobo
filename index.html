@@ -96,6 +96,10 @@ select.suc{height:32px;padding:0 10px;border:.5px solid var(--border2);border-ra
 .b-gelatinas{background:#f5f5f7;color:#1d1d1f}
 .b-pan{background:#f5f5f7;color:#1d1d1f}
 .b-extras{background:#f5f5f7;color:#1d1d1f}
+.b-flores{background:#f0faf0;color:#1a5c1a}
+.b-follajes{background:#f0faf0;color:#1a5c1a}
+.b-jarrones{background:#f0faf0;color:#1a5c1a}
+.b-bouquets{background:#f0faf0;color:#1a5c1a}
 
 /* NO RESULTS */
 .nores{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--text2);font-size:14px}
@@ -165,6 +169,10 @@ select.suc{height:32px;padding:0 10px;border:.5px solid var(--border2);border-ra
   <button class="fb" onclick="setFilter('gelatinas',this)">Gelatinas</button>
   <button class="fb" onclick="setFilter('pan',this)">Pan Variado</button>
   <button class="fb" onclick="setFilter('extras',this)">Extras / Rellenos</button>
+  <button class="fb" onclick="setFilter('flores',this)">🌸 Floravita — Flores</button>
+  <button class="fb" onclick="setFilter('follajes',this)">🌿 Floravita — Follajes</button>
+  <button class="fb" onclick="setFilter('jarrones',this)">🪴 Floravita — Jarrones</button>
+  <button class="fb" onclick="setFilter('bouquets',this)">💐 Floravita — Bouquets</button>
 </div>
 
 <!-- Banner sabores -->
@@ -195,7 +203,7 @@ const SABORES_NOTA = "*Napolitano solo presentación circular · *Vainilla/Duraz
 const products = [
 
   // ── PASTELES REDONDOS / JACOBINOS ─────────────────────────────
-  {id:1,  name:"Pastel Jacobino",        sub:"Vainilla, Chocolate, Combinado, Moca, Red Velvet, Blueberry, Limón, Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"A cotizar"},
+  {id:1,  name:"Pastel Jacobino",        sub:"Vainilla, Chocolate, Combinado, Moca, Red Velvet, Blueberry, Limón, Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
   {id:2,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
   {id:3,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
   {id:4,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
@@ -401,6 +409,89 @@ const products = [
   {id:360, name:"Jelly Cake", sub:"Única presentación 8 pulgadas", cat:"tartas", desc:"Jelly cake, única presentación en 8 pulgadas.", size:'8"', persons:"7–8", price:"A cotizar"},
 
   {id:141, name:"Pañuelo", sub:"", cat:"pan", desc:"Relleno de queso crema, jamón y jalapeño. Exterior con ajonjolí.", size:"Pieza", persons:"", price:"$45"},
+
+  // ── FLORAVITA — FLORES INDIVIDUALES ──────────────────────────
+  {id:400, name:"Hortensia Mini",              sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$100"},
+  {id:401, name:"Hortensia Grande",            sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$150"},
+  {id:402, name:"Gerbera Americana",           sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$45"},
+  {id:403, name:"Mini Gerbera Pastel",         sub:"Por tallo", cat:"flores", desc:"Mini gerbera en tono pastel. Precio por tallo.", size:"Tallo", persons:"", price:"$50"},
+  {id:404, name:"Mini Gerbera Normal",         sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$45"},
+  {id:405, name:"Rosa Normal",                 sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:406, name:"Rosa Inglesa",                sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$70"},
+  {id:407, name:"Rosa Wavara",                 sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$70"},
+  {id:408, name:"Rosa de Jardín",              sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$70"},
+  {id:409, name:"Rosa de Chitelpec",           sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$35"},
+  {id:410, name:"Mini Rosa de Jardín",         sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$45"},
+  {id:411, name:"Mini Rosa Bobastic",          sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$45"},
+  {id:412, name:"Mini Rosa Normal",            sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$35"},
+  {id:413, name:"Margaritas",                  sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:414, name:"Lisianthus",                  sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$45"},
+  {id:415, name:"Clavel",                      sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:416, name:"Crisantemos",                 sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$35"},
+  {id:417, name:"Roxana",                      sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$30"},
+  {id:418, name:"Ranunculus",                  sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:419, name:"Lilis Normal",                sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$50"},
+  {id:420, name:"Lili Star",                   sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$150"},
+  {id:421, name:"Lili Concador",               sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$70"},
+  {id:422, name:"Lili Rose",                   sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$150"},
+  {id:423, name:"Alcatraz",                    sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$45"},
+  {id:424, name:"Girasoles",                   sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$35"},
+  {id:425, name:"Perrito",                     sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:426, name:"Anturio",                     sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$120"},
+  {id:427, name:"Astromelia",                  sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:428, name:"Aleli",                       sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$20"},
+  {id:429, name:"Dalias",                      sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"A cotizar"},
+  {id:430, name:"Protea Huevito",              sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$150"},
+  {id:431, name:"Protea King",                 sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$550"},
+  {id:432, name:"Calas",                       sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$50"},
+  {id:433, name:"Tulipán Normal",              sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$60"},
+  {id:434, name:"Tulipán Spidey",              sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$80"},
+  {id:435, name:"Tulipán Doble",               sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$80"},
+  {id:436, name:"Tulipán Bubble",              sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$100"},
+  {id:437, name:"Escabiosa Suave",             sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:438, name:"Espuela",                     sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:439, name:"Delphinium",                  sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:440, name:"Lavanda",                     sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:441, name:"Manzanilla",                  sub:"Por tallo", cat:"flores", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+
+  // ── FLORAVITA — FOLLAJES ──────────────────────────────────────
+  {id:450, name:"Estatis",                     sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:451, name:"Salal",                       sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:452, name:"Solidago",                    sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15"},
+  {id:453, name:"Mini Dollar",                 sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$20"},
+  {id:454, name:"Dólar Moneda",                sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$20"},
+  {id:455, name:"Eucalipto",                   sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$3 x 15"},
+  {id:456, name:"Nube",                        sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$30"},
+  {id:457, name:"Ruscus",                      sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$3 x 15"},
+  {id:458, name:"Wax",                         sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$25"},
+  {id:459, name:"Nuevos Follajes",             sub:"Follaje", cat:"follajes", desc:"Precio por tallo.", size:"Tallo", persons:"", price:"$15–$40"},
+
+  // ── FLORAVITA — JARRONES Y PLANTAS ───────────────────────────
+  {id:470, name:"Jarrón Lechero",              sub:"Jarrón", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$200"},
+  {id:471, name:"Cilindro Corto",              sub:"Jarrón", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$100"},
+  {id:472, name:"Cilindro Largo",              sub:"Jarrón", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$130"},
+  {id:473, name:"Jarrón Lechero Jumbo",        sub:"Jarrón", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$400"},
+  {id:474, name:"Jarrón Mason",                sub:"Jarrón", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$100"},
+  {id:475, name:"Jarrón Jumbo",                sub:"Jarrón", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$450"},
+  {id:476, name:"Planta Chica con Cerámica",   sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$499"},
+  {id:477, name:"Planta Grande con Cerámica",  sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$650"},
+  {id:478, name:"Planta Chica sin Cerámica",   sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$250"},
+  {id:479, name:"Planta Grande sin Cerámica",  sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$450"},
+  {id:480, name:"Planta de Orquídea con Cerámica", sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$650"},
+  {id:481, name:"Anturio Mini con Cerámica",   sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$450"},
+  {id:482, name:"Planta de Orquídea",          sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$450"},
+  {id:483, name:"Planta de Sombra",            sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$200"},
+  {id:484, name:"Planta Mini Anturio",         sub:"Planta", cat:"jarrones", desc:"Precio por pieza.", size:"Pieza", persons:"", price:"$250"},
+
+  // ── FLORAVITA — BOUQUETS ──────────────────────────────────────
+  {id:490, name:"Ramo de Lilies con Rosa 150", sub:"Bouquet", cat:"bouquets", desc:"Ramo de lilies con 150 rosas.", size:"Ramo", persons:"", price:"$4,500"},
+  {id:491, name:"Ramo de Lilies con 100 Rosas",sub:"Bouquet", cat:"bouquets", desc:"Ramo de lilies con 100 rosas.", size:"Ramo", persons:"", price:"$3,200"},
+  {id:492, name:"Ramo de Lilies con 50 Rosas", sub:"Bouquet", cat:"bouquets", desc:"Ramo de lilies con 50 rosas.", size:"Ramo", persons:"", price:"$1,700"},
+  {id:493, name:"Ramo de 150 Rosas",           sub:"Bouquet", cat:"bouquets", desc:"Ramo de 150 rosas.", size:"Ramo", persons:"", price:"$4,200"},
+  {id:494, name:"Ramo de 100 Rosas",           sub:"Bouquet", cat:"bouquets", desc:"Ramo de 100 rosas.", size:"Ramo", persons:"", price:"$2,900"},
+  {id:495, name:"Ramo de 50 Rosas",            sub:"Bouquet", cat:"bouquets", desc:"Ramo de 50 rosas.", size:"Ramo", persons:"", price:"$1,500"},
+  {id:496, name:"Maxi Maxi Bouquet",           sub:"Bouquet premium", cat:"bouquets", desc:"Maxi maxi bouquet.", size:"Ramo", persons:"", price:"$5,500"},
+
   // ── EXTRAS, RELLENOS Y ADICIONALES ───────────────────────────
 
   // Toppings sin costo
@@ -513,7 +604,7 @@ const rellenos = [
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 const catLabels = {premium:"Pastel",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
-const catBadge  = {premium:"b-premium",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras"};
+const catBadge  = {premium:"b-premium",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes",jarrones:"b-jarrones",bouquets:"b-bouquets"};
 const SECS = {
   rio:    {label:"Sucursal Río",    info:"Francisco Javier Mina #1616-5, Zona Urbana Río · Lun–Dom 7am–8:30pm · 664 104 09 41"},
   otay:   {label:"Sucursal Otay",   info:"Calz del Tecnológico 13701, Local 19-20 · Lun–Dom 7am–9pm · 664 973 68 01 / 664 973 10 89"},
