@@ -7,63 +7,49 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;--bg2:#f5f5f7;--bg3:#ebebed;
+  --bg:#fff;--bg2:#f5f5f7;--bg3:#ebebed;
   --text:#1d1d1f;--text2:#6e6e73;--text3:#aeaeb2;
   --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.14);
-  --accent:#0071e3;
+  --accent:#0071e3;--green:#1a7f37;
   --r:10px;--rl:14px;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:var(--bg2);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
-
-/* HEADER */
-.site-header{background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:50}
+.site-header{background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:.5px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50}
 .brand{display:flex;align-items:center;gap:10px}
-.logo{width:36px;height:36px;border-radius:50%;background:#f5f5f7;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#1d1d1f;letter-spacing:-.5px;border:.5px solid var(--border)}
-.brand-text h1{font-size:15px;font-weight:600;letter-spacing:-.2px}
+.logo{width:34px;height:34px;border-radius:50%;background:var(--bg2);border:.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;color:var(--text)}
+.brand-text h1{font-size:14px;font-weight:600}
 .brand-text p{font-size:11px;color:var(--text2);margin-top:1px}
-select.suc{height:32px;padding:0 10px;border:.5px solid var(--border2);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:inherit}
-
-/* AVISO */
-.warning{background:#fff8ed;border-left:3px solid #ff9f0a;padding:10px 16px;font-size:13px;color:#3a2800;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.warning{background:#fff8ed;border-left:3px solid #f9a825;padding:10px 16px;font-size:13px;color:#5c3d00;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .warning strong{font-weight:600;display:block;margin-bottom:1px}
-
-/* MAIN */
 .main{max-width:1100px;margin:0 auto;padding:1.25rem 1.5rem}
-
-/* CONTROLES */
-.controls{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
-.sw{position:relative;flex:1;min-width:200px}
-.sw svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
-.sw input{width:100%;height:36px;padding:0 12px 0 34px;border:.5px solid var(--border2);border-radius:var(--r);background:#fff;font-size:14px;color:var(--text);outline:none;font-family:inherit}
-.sw input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,113,227,.12)}
-.fb{height:36px;padding:0 14px;font-size:12px;border:.5px solid var(--border2);border-radius:99px;background:#fff;color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit;font-weight:500}
-.fb.active{background:#1d1d1f;color:#fff;border-color:#1d1d1f;font-weight:600}
-.fb:hover:not(.active){background:var(--bg3)}
+.search-wrap{position:relative;margin-bottom:1.25rem}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+.search-wrap input{width:100%;height:44px;padding:0 16px 0 42px;border:.5px solid var(--border2);border-radius:12px;background:#fff;font-size:15px;color:var(--text);outline:none;font-family:inherit;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,113,227,.1)}
+.section-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
+.filter-wrap{position:relative}
+.filter-wrap .arr{position:absolute;top:50%;transform:translateY(-60%);width:28px;height:28px;background:#fff;border:.5px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;box-shadow:0 1px 4px rgba(0,0,0,.1);transition:opacity .2s}
+.filter-wrap .arr:hover{background:var(--bg3)}
+.filter-wrap .arr.left{left:0}
+.filter-wrap .arr.right{right:0}
+.filter-wrap .arr svg{width:14px;height:14px;color:var(--text2)}
+.filter-wrap .filter-scroll{padding:0 32px}
+@media(max-width:600px){.filter-wrap .arr{display:none}.filter-wrap .filter-scroll{padding:0}}
+.chip{height:34px;padding:0 13px;border-radius:99px;border:.5px solid var(--border2);background:#fff;font-size:12px;font-weight:500;color:var(--text2);white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:inherit;transition:all .15s;flex-shrink:0}
+.chip.active{background:var(--text);color:#fff;border-color:var(--text)}
+.chip:hover:not(.active){background:var(--bg3)}
+.chip-flora{border-color:rgba(26,127,55,.3);color:var(--green)}
+.chip-flora.active{background:var(--green);border-color:var(--green);color:#fff}
+.floravita-divider{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.floravita-divider span{font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.floravita-divider::before,.floravita-divider::after{content:'';flex:1;height:.5px;background:rgba(26,127,55,.2)}
+.flores-aviso{background:#f0faf0;border:.5px solid rgba(26,127,55,.25);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px;margin-bottom:1rem;line-height:1.5}
+.flores-aviso svg{flex-shrink:0}
+.flores-aviso p strong{font-weight:600}
 .count{font-size:12px;color:var(--text3);margin-bottom:10px}
-
-/* SABORES BANNER */
-.sb{background:#f5f5f7;border:.5px solid var(--border);border-radius:var(--rl);padding:12px 16px;margin-bottom:1.25rem;display:none}
-.sb.on{display:block}
-.sb h3{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
-.pills{display:flex;flex-wrap:wrap;gap:6px}
-.pill{font-size:12px;font-weight:500;padding:3px 10px;border-radius:99px;background:#fff;border:.5px solid var(--border2);color:var(--text)}
-.pill-note{font-size:11px;color:var(--text3);align-self:center;margin-left:4px}
-
-/* EXTRAS BOX */
-.extras-box{background:var(--bg2);border:.5px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:1.5rem;display:none}
-.extras-box strong{color:var(--text);font-size:13px;display:block;margin-bottom:8px}
-.eg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
-.ei{background:#fff;border:.5px solid var(--border);border-radius:var(--r);padding:8px 12px}
-.et{font-weight:600;color:var(--text);font-size:12px;margin-bottom:2px}
-.ep{color:var(--accent);font-weight:700;font-size:12px}
-.en{font-size:11px;color:var(--text3);margin-top:2px}
-
-/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px}
-
-/* CARD */
 .card{background:#fff;border:.5px solid var(--border);border-radius:var(--rl);overflow:hidden;transition:box-shadow .2s,transform .2s}
-.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-1px)}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-1px)}
 .img-slot{width:100%;aspect-ratio:4/3;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;border-bottom:.5px solid var(--border);position:relative;overflow:hidden;transition:background .15s}
 .img-slot:hover{background:var(--bg3)}
 .img-slot svg{color:var(--text3)}
@@ -71,7 +57,8 @@ select.suc{height:32px;padding:0 10px;border:.5px solid var(--border2);border-ra
 .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .cb{padding:10px 12px 12px}
-.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;margin-bottom:6px;letter-spacing:.02em}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;margin-bottom:6px;background:var(--bg2);color:var(--text2)}
+.b-flores,.b-follajes{background:#f0faf0;color:#1a5c1a}
 .cn{font-size:13px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:3px}
 .cs{font-size:11px;color:var(--text2);margin-bottom:4px;line-height:1.3}
 .cd{font-size:10.5px;color:var(--text3);line-height:1.5;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -83,50 +70,60 @@ select.suc{height:32px;padding:0 10px;border:.5px solid var(--border2);border-ra
 .cpers{font-size:10px;color:var(--text3);margin-top:1px}
 .cprice{font-size:16px;font-weight:700;color:var(--text)}
 .cprice.cotizar{font-size:13px;color:var(--text2);font-weight:500}
-.cnote{font-size:10px;color:#3a2800;background:#fff8ed;padding:2px 6px;border-radius:4px;margin-top:5px;display:inline-block}
+.cnote{font-size:10px;color:#5c3d00;background:#fff8ed;padding:2px 6px;border-radius:4px;margin-top:5px;display:inline-block}
 .cnote.red{color:#c00;background:#fff0f0}
-
-/* BADGES — monocromáticos */
-.b-premium{background:#f5f5f7;color:#1d1d1f}
-.b-pisos{background:#f5f5f7;color:#1d1d1f}
-.b-especiales{background:#f5f5f7;color:#1d1d1f}
-.b-crepas{background:#f5f5f7;color:#1d1d1f}
-.b-tartas{background:#f5f5f7;color:#1d1d1f}
-.b-postres{background:#f5f5f7;color:#1d1d1f}
-.b-mini{background:#f5f5f7;color:#1d1d1f}
-.b-gelatinas{background:#f5f5f7;color:#1d1d1f}
-.b-pan{background:#f5f5f7;color:#1d1d1f}
-.b-extras{background:#f5f5f7;color:#1d1d1f}
-.b-flores{background:#f0faf0;color:#1a5c1a}
-.b-follajes{background:#f0faf0;color:#1a5c1a}
-.b-jarrones{background:#f0faf0;color:#1a5c1a}
-.b-bouquets{background:#f0faf0;color:#1a5c1a}
-
-.flores-aviso{background:#f0faf0;border-left:3px solid #34a853;padding:10px 16px;font-size:13px;color:#1a5c1a;display:flex;align-items:flex-start;gap:8px;line-height:1.5;margin-bottom:1.25rem;border-radius:0 var(--r) var(--r) 0}
-.flores-aviso strong{font-weight:600}
-
-/* NO RESULTS */
 .nores{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--text2);font-size:14px}
 .nores .ico{font-size:36px;margin-bottom:10px}
-.nores strong{color:var(--accent);font-size:15px;display:block;margin-bottom:6px}
+.nores strong{color:var(--text);font-size:15px;display:block;margin-bottom:6px}
+.sb{background:var(--bg2);border:.5px solid var(--border);border-radius:var(--rl);padding:12px 16px;margin-bottom:1.25rem;display:none}
+.sb.on{display:block}
+.sb h3{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;font-weight:500;padding:3px 10px;border-radius:99px;background:#fff;border:.5px solid var(--border2);color:var(--text)}
+.pill-note{font-size:11px;color:var(--text3);align-self:center;margin-left:4px}
 
-/* TABLA ADICIONALES */
-.stitle{font-size:15px;font-weight:700;margin:2rem 0 1rem;padding-top:1.5rem;border-top:.5px solid var(--border);color:var(--text)}
-.at{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:var(--rl);overflow:hidden;border:.5px solid var(--border)}
-.at th{text-align:left;font-weight:700;font-size:10px;color:var(--text2);padding:8px 12px;background:var(--bg3);border-bottom:.5px solid var(--border);text-transform:uppercase;letter-spacing:.04em}
-.at td{padding:8px 12px;border-bottom:.5px solid var(--border);color:var(--text)}
-.at tr:last-child td{border-bottom:none}
-.at tr:hover td{background:var(--bg2)}
-.at .pr{font-weight:700;color:var(--accent)}
+.cat-toggle{height:36px;padding:0 14px;border-radius:99px;border:.5px solid var(--border2);background:#fff;font-size:13px;font-weight:500;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit;transition:background .15s}
+.cat-toggle:hover{background:var(--bg3)}
+.active-cat-label{font-size:13px;color:var(--text2);font-weight:500}
+.cats-panel{background:#fff;border:.5px solid var(--border2);border-radius:var(--rl);padding:14px 16px;margin-bottom:1rem}
 
-/* FOOTER */
+/* NAV TABS */
+.nav-tabs{display:flex;gap:2px;margin-left:auto}
+.nav-tab{height:32px;padding:0 16px;border-radius:8px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;font-family:inherit;transition:all .15s}
+.nav-tab.active{background:var(--bg2);color:var(--text);font-weight:600}
+.nav-tab:hover:not(.active){background:var(--bg3)}
+
+/* GUÍA DE PRECIOS */
+.guia-section{display:none}
+.guia-section.active{display:block}
+.catalog-section{display:block}
+.catalog-section.hidden{display:none}
+
+.guia-wrap{max-width:1100px;margin:0 auto;padding:1.25rem 1.5rem}
+.guia-block{background:#fff;border:.5px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:1.25rem}
+.guia-block-title{padding:12px 16px;font-size:13px;font-weight:600;color:var(--text);background:var(--bg2);border-bottom:.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.guia-block-title svg{color:var(--text3);transition:transform .2s;flex-shrink:0}
+.guia-block-title.open svg{transform:rotate(180deg)}
+.guia-block-body{overflow-x:auto;display:none}
+.guia-block-body.open{display:block}
+.guia-table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}
+.guia-table th{text-align:left;padding:8px 14px;font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;background:var(--bg2);border-bottom:.5px solid var(--border);white-space:normal}
+.guia-table td{padding:8px 14px;border-bottom:.5px solid var(--border);color:var(--text);vertical-align:top}
+.guia-table tr:last-child td{border-bottom:none}
+.guia-table tr:hover td{background:#fafafa}
+.guia-table .medida{font-weight:600;color:var(--text)}
+.guia-table .precio{font-weight:700;color:var(--text);font-size:13px}
+.guia-table .extra{color:var(--text2)}
+.guia-table .nota{font-size:11px;color:var(--text3);white-space:normal;max-width:200px}
+
+.guia-info{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-bottom:.5px solid var(--border);background:#fafafa}
+.guia-tag{font-size:11px;padding:3px 10px;border-radius:99px;background:#fff;border:.5px solid var(--border2);color:var(--text2)}
+.guia-tag.green{background:#f0faf0;border-color:rgba(26,127,55,.25);color:var(--green)}
+.guia-tag.red{background:#fff0f0;border-color:rgba(200,0,0,.2);color:#c00}
+.guia-tag.yellow{background:#fff8ed;border-color:rgba(249,168,37,.3);color:#5c3d00}
+.extra.red{color:#c00}
 .site-footer{text-align:center;padding:2rem 1rem;font-size:11px;color:var(--text3);border-top:.5px solid var(--border);margin-top:2.5rem}
-
-@media(max-width:520px){
-  .main{padding:1rem}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}
-  .controls{gap:5px}
-}
+@media(max-width:520px){.main{padding:1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}}
 </style>
 </head>
 <body>
@@ -136,69 +133,76 @@ select.suc{height:32px;padding:0 10px;border:.5px solid var(--border2);border-ra
     <div class="logo">PJ</div>
     <div class="brand-text">
       <h1>Pastelería y Panadería Jacobo</h1>
-      <p>Catálogo oficial · Guía de Precios 2025 · Uso interno por sucursal</p>
+      <p>Catálogo oficial · Guía de Precios 2025–2026 · Uso interno</p>
     </div>
   </div>
-  <select class="suc" id="suc">
-    <option value="">Selecciona sucursal</option>
-    <option value="rio">Sucursal Río</option>
-    <option value="otay">Sucursal Otay</option>
-    <option value="monarca">Sucursal Monarca</option>
-  </select>
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="switchView('catalogo',this)">Catálogo</button>
+    <button class="nav-tab" onclick="switchView('guia',this)">Guía de Precios</button>
+  </nav>
 </header>
 
-<div class="warning">
-  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
-  <div>
-    <strong>Aviso para encargados de sucursal</strong>
-    Solo los productos listados aquí están autorizados para venta. Si un colaborador saca un producto que NO aparece en este catálogo, debe ser devuelto al área de origen de inmediato.
-  </div>
-</div>
-
+<div id="catalog-section">
 <main class="main">
 
-<div class="controls">
-  <div class="sw">
-    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="search" placeholder="Buscar producto..." oninput="render()" autocomplete="off"/>
-  </div>
-  <button class="fb active" onclick="setFilter('todos',this)">Todos</button>
-  <button class="fb" onclick="setFilter('premium',this)">Pasteles</button>
-  <button class="fb" onclick="setFilter('pisos',this)">Pisos</button>
-  <button class="fb" onclick="setFilter('especiales',this)">Corazón / Plancha</button>
-  <button class="fb" onclick="setFilter('crepas',this)">Crepas</button>
-  <button class="fb" onclick="setFilter('tartas',this)">Tartas / Flanes</button>
-  <button class="fb" onclick="setFilter('postres',this)">Postres</button>
-  <button class="fb" onclick="setFilter('mini',this)">Mini Postres</button>
-  <button class="fb" onclick="setFilter('gelatinas',this)">Gelatinas</button>
-  <button class="fb" onclick="setFilter('pan',this)">Pan Variado</button>
-  <button class="fb" onclick="setFilter('extras',this)">Extras / Rellenos</button>
-  <button class="fb" onclick="setFilter('flores',this)">🌸 Floravita — Flores</button>
-  <button class="fb" onclick="setFilter('follajes',this)">🌿 Floravita — Follajes</button>
+<!-- Buscador -->
+<div class="search-wrap">
+  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/></svg>
+  <input type="text" id="search" placeholder="Buscar producto, tamaño, precio..." oninput="render()" autocomplete="off"/>
 </div>
 
+<!-- Filtros Jacobo -->
+<p class="section-label">Jacobo</p>
+<div style="display:flex;gap:8px;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
+  <button class="cat-toggle" id="cat-toggle" onclick="toggleCats()">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+    Categorías
+    <svg id="cat-arrow" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="transition:transform .2s"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </button>
+  <span id="active-label" class="active-cat-label">Todos</span>
+</div>
+
+<div class="cats-panel" id="cats-panel" style="display:none">
+  <p class="section-label" style="margin-bottom:7px">Jacobo</p>
+  <div class="filter-scroll">
+    <button class="chip active" onclick="setFilter('todos',this)">🗂 Todos</button>
+    <button class="chip" onclick="setFilter('premium',this)">🎂 Pasteles</button>
+    <button class="chip" onclick="setFilter('pisos',this)">🏛️ Pisos</button>
+    <button class="chip" onclick="setFilter('especiales',this)">❤️ Corazón / Plancha</button>
+    <button class="chip" onclick="setFilter('crepas',this)">🥞 Crepas</button>
+    <button class="chip" onclick="setFilter('tartas',this)">🍮 Tartas / Flanes</button>
+    <button class="chip" onclick="setFilter('postres',this)">🍩 Postres</button>
+    <button class="chip" onclick="setFilter('mini',this)">🍬 Mini Postres</button>
+    <button class="chip" onclick="setFilter('gelatinas',this)">🟣 Gelatinas</button>
+    <button class="chip" onclick="setFilter('pan',this)">🍞 Pan Variado</button>
+    <button class="chip" onclick="setFilter('extras',this)">✨ Extras / Rellenos</button>
+  </div>
+  <div class="floravita-divider"><span>Floravita — referencia de precios</span></div>
+  <div class="filter-scroll">
+    <button class="chip chip-flora" onclick="setFilter('flores',this)">🌸 Flores</button>
+    <button class="chip chip-flora" onclick="setFilter('follajes',this)">🌿 Follajes</button>
+  </div>
+</div>
+
+<!-- Aviso flores -->
 <div class="flores-aviso" id="flores-aviso" style="display:none">
-  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
-  <div>
-    <strong>Flores Floravita — Solo por pedido con anticipación</strong>
-    Estos precios son de referencia. Las flores <strong>no se piden de un día para otro</strong> — siempre consulta disponibilidad con anticipación antes de confirmar cualquier decoración con flores.
-  </div>
+  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 8v4m0 4h.01"/></svg>
+  <p>Flores con <strong>anticipación</strong> — consultar disponibilidad antes de confirmar.</p>
 </div>
 
-<!-- Banner sabores -->
 <div class="sb" id="sb">
   <h3>🎨 Sabores disponibles — aplican a pasteles redondos, jacobinos, planchas, corazones, cuadrados y pisos</h3>
   <div class="pills" id="pills"></div>
 </div>
 
-<!-- Extras box -->
 <div class="count" id="count-label"></div>
 <div class="grid" id="grid"></div>
 
 </main>
+</div>
 
-<footer class="site-footer" id="footer-suc">
-  Pastelería y Panadería Jacobo · Tijuana, B.C. · Guía de Precios 2025 · Uso interno
+<footer class="site-footer">
+  Pastelería y Panadería Jacobo · Tijuana, B.C. · Guía de Precios 2025–2026 · Uso interno
 </footer>
 
 <script>
@@ -238,7 +242,7 @@ const products = [
   // ── CORAZÓN / CUADRADO ────────────────────────────────────────
   {id:18, name:"Pastel Corazón / Cuadrado", sub:"Vainilla, Choco, Combinado, Zanahoria, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$500"},
   {id:19, name:"Pastel Corazón / Cuadrado", sub:"Vainilla, Choco, Combinado, Zanahoria, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$600"},
-  {id:20, name:"Pastel Corazón / Cuadrado", sub:"Vainilla, Choco, Combinado, Zanahoria, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$800"},
+  {id:20, name:"Pastel Corazón / Cuadrado", sub:"Vainilla, Choco, Combinado, Zanahoria, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$700"},
   {id:21, name:"Pastel Corazón / Cuadrado", sub:"Sin doble relleno en cuadrado", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,400", note:"Sin doble relleno cheesecake en cuadrado"},
 
   // ── BARRA NAPOLITANA ──────────────────────────────────────────
@@ -263,8 +267,8 @@ const products = [
   {id:34, name:"Plancha 3 Leches",      sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido. Crema de Queso +$300. Sin toppings sin costo.", size:"1 plancha", persons:"90–100", price:"$3,200"},
 
   // ── PASTELES DE CREPAS ────────────────────────────────────────
-  {id:35, name:"Pastel de Crepas",      sub:"Fresa, Oreo, Cajeta o Nutella", cat:"crepas", desc:"Pastel de crepas. Relleno a elegir. Extra mermelada frutos rojos disponible.", size:'6"', persons:"4–6", price:"$480", note:"Extra mermelada +$100"},
-  {id:36, name:"Pastel de Crepas",      sub:"Fresa, Oreo, Cajeta o Nutella", cat:"crepas", desc:"Pastel de crepas. Relleno a elegir. Extra mermelada frutos rojos disponible.", size:'8"', persons:"8–10", price:"$700", note:"Extra mermelada +$100"},
+  {id:35, name:"Pastel de Crepas",      sub:"Fresa, Oreo, Cajeta o Nutella", cat:"crepas", desc:"Pastel de crepas. Relleno a elegir. Extra mermelada frutos rojos disponible.", size:'6"', persons:"4–6", price:"$500", note:"Extra mermelada +$100"},
+  {id:36, name:"Pastel de Crepas",      sub:"Fresa, Oreo, Cajeta o Nutella", cat:"crepas", desc:"Pastel de crepas. Relleno a elegir. Extra mermelada frutos rojos disponible.", size:'8"', persons:"8–10", price:"$720", note:"Extra mermelada +$100"},
   {id:37, name:"Pastel de Crepas",      sub:"Fresa, Oreo, Cajeta o Nutella", cat:"crepas", desc:"Pastel de crepas. Relleno a elegir. Extra mermelada frutos rojos disponible.", size:'10"', persons:"10–15", price:"$1,100", note:"Extra mermelada +$100"},
   {id:38, name:"Pastel de Crepas",      sub:"Fresa, Oreo, Cajeta o Nutella", cat:"crepas", desc:"Pastel de crepas. Relleno a elegir. Extra mermelada frutos rojos disponible.", size:'12"', persons:"15–20", price:"$1,500", note:"Extra mermelada +$150"},
 
@@ -275,8 +279,8 @@ const products = [
   {id:42, name:"Chocoflan / Flan",      sub:"Con fruta de temporada", cat:"tartas", desc:"Chocoflan o flan con decoración de fruta.", size:'6"', persons:"4–6", price:"$380"},
   {id:43, name:"Chocoflan / Flan",      sub:"Con fruta de temporada", cat:"tartas", desc:"Chocoflan o flan con decoración de fruta.", size:'8"', persons:"7–8", price:"$480"},
   {id:44, name:"Chocoflan / Flan",      sub:"Con fruta de temporada", cat:"tartas", desc:"Chocoflan o flan con decoración de fruta.", size:'10"', persons:"9–10", price:"$650"},
-  {id:45, name:"Pay de Queso",            sub:"Con fruta de temporada", cat:"tartas", desc:"Cheesecake con decoración de fruta de temporada.", size:'6"', persons:"4–6", price:"$470"},
-  {id:46, name:"Pay de Queso",            sub:"Con fruta de temporada", cat:"tartas", desc:"Cheesecake con decoración de fruta de temporada.", size:'8"', persons:"7", price:"$650"},
+  {id:45, name:"Pay de Queso",            sub:"Con fruta de temporada", cat:"tartas", desc:"Cheesecake con decoración de fruta de temporada.", size:'6"', persons:"4–6", price:"$490"},
+  {id:46, name:"Pay de Queso",            sub:"Con fruta de temporada", cat:"tartas", desc:"Cheesecake con decoración de fruta de temporada.", size:'8"', persons:"7", price:"$670"},
   {id:47, name:"Pay de Queso",            sub:"Con fruta de temporada", cat:"tartas", desc:"Cheesecake con decoración de fruta de temporada.", size:'10"', persons:"9", price:"$1,100"},
   {id:48, name:"Pay de Queso Blueberry",  sub:"", cat:"tartas", desc:"Cheesecake de blueberry con fruta de temporada.", size:'10"', persons:"9", price:"$1,200"},
 
@@ -395,8 +399,8 @@ const products = [
   // ── PAYS DE QUESO ─────────────────────────────────────────────
   {id:320, name:"Pay de Queso · Jacobino", sub:"Cheesecake", cat:"tartas", desc:"Cheesecake jacobino individual.", size:"Jacobino", persons:"1", price:"$190"},
   {id:321, name:"Pay de Queso · Individual", sub:"Crema de queso y topping", cat:"tartas", desc:"Cheesecake individual con crema de queso y topping.", size:"Individual", persons:"1", price:"$150"},
-  {id:323, name:"Pay de Queso con Frutos Rojos", sub:"Crema de queso y frutos rojos", cat:"tartas", desc:"Cheesecake con frutos rojos y crema de queso.", size:'6"', persons:"4–6", price:"$470"},
-  {id:324, name:"Pay de Queso con Frutos Rojos", sub:"Crema de queso y frutos rojos", cat:"tartas", desc:"Cheesecake con frutos rojos y crema de queso.", size:'8"', persons:"7–8", price:"$650"},
+  {id:323, name:"Pay de Queso con Frutos Rojos", sub:"Crema de queso y frutos rojos", cat:"tartas", desc:"Cheesecake con frutos rojos y crema de queso.", size:'6"', persons:"4–6", price:"$490"},
+  {id:324, name:"Pay de Queso con Frutos Rojos", sub:"Crema de queso y frutos rojos", cat:"tartas", desc:"Cheesecake con frutos rojos y crema de queso.", size:'8"', persons:"7–8", price:"$670"},
   {id:326, name:"Pay de Queso", sub:"Clásico", cat:"tartas", desc:"Cheesecake clásico.", size:'12"', persons:"12–15", price:"$1,600"},
   {id:327, name:"Pay de Queso Snickers", sub:"", cat:"tartas", desc:"Cheesecake estilo snickers.", size:'6"', persons:"4–6", price:"$450"},
   {id:328, name:"Pay de Queso Snickers", sub:"", cat:"tartas", desc:"Cheesecake estilo snickers.", size:'8"', persons:"7–8", price:"$650"},
@@ -600,19 +604,55 @@ const rellenos = [
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 const catLabels = {premium:"Pastel",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
 const catBadge  = {premium:"b-premium",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes"};
-const SECS = {
-  rio:    {label:"Sucursal Río",    info:"Francisco Javier Mina #1616-5, Zona Urbana Río · Lun–Dom 7am–8:30pm · 664 104 09 41"},
-  otay:   {label:"Sucursal Otay",   info:"Calz del Tecnológico 13701, Local 19-20 · Lun–Dom 7am–9pm · 664 973 68 01 / 664 973 10 89"},
-  monarca:{label:"Sucursal Monarca",info:"Gato Bronco 19651-Int 4-6, Amp. Guaycura · Lun–Dom 7am–9pm · 664 686 6850"},
-};
+
 
 let activeFilter = "todos";
 let imgStore = {};
 
+
+function toggleCats() {
+  const panel = document.getElementById('cats-panel');
+  const arrow = document.getElementById('cat-arrow');
+  const open = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const catalog = document.getElementById('catalog-section');
+  const guia = document.getElementById('guia-section');
+  if (view === 'catalogo') {
+    catalog.style.display = 'block';
+    guia.style.display = 'none';
+  } else {
+    catalog.style.display = 'none';
+    guia.style.display = 'block';
+  }
+}
+
+function toggleBlock(titleEl) {
+  titleEl.classList.toggle('open');
+  const body = titleEl.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function scrollFilters(id, amount) {
+  const el = document.getElementById(id);
+  if (el) el.scrollBy({left: amount, behavior: 'smooth'});
+}
+
 function setFilter(f, btn) {
   activeFilter = f;
-  document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  const label = document.getElementById('active-label');
+  if (label) label.textContent = btn.textContent.replace(/^[^a-zA-ZÀ-ÿ0-9]*/,'').trim();
+  const panel = document.getElementById('cats-panel');
+  const arrow = document.getElementById('cat-arrow');
+  if (panel) { panel.style.display = 'none'; }
+  if (arrow) { arrow.style.transform = 'rotate(0deg)'; }
   render();
 }
 
@@ -621,10 +661,28 @@ function getFiltered() {
   return products.filter(p => {
     if (p.active === false) return false;
     const mc = activeFilter === 'todos' || p.cat === activeFilter;
-    const mq = !q || p.name.toLowerCase().includes(q) || (p.sub||'').toLowerCase().includes(q)
-      || p.desc.toLowerCase().includes(q) || (catLabels[p.cat]||'').toLowerCase().includes(q)
-      || (p.size||'').toLowerCase().includes(q) || (p.price||'').toLowerCase().includes(q);
-    return mc && mq;
+    if (!q) return mc;
+
+    // Normalize size: remove " symbol for matching
+    const sizeClean = (p.size||'').replace(/"/g,'').replace(/pulgadas/gi,'').trim();
+
+    // Combined searchable string
+    const haystack = [
+      p.name, p.sub, p.desc, p.size, sizeClean,
+      p.price, catLabels[p.cat]||'',
+      // Aliases
+      p.cat === 'premium' ? 'pastel redondo' : '',
+      p.cat === 'tartas' ? 'pay cheesecake flan tarta' : '',
+      p.cat === 'especiales' ? 'plancha corazon cuadrado' : '',
+      p.cat === 'crepas' ? 'crepa' : '',
+      p.cat === 'postres' ? 'postre dona cupcake hojaldre' : '',
+      p.cat === 'mini' ? 'mini postre' : '',
+      p.cat === 'pan' ? 'pan panaderia' : '',
+    ].join(' ').toLowerCase();
+
+    // Split query into words and require ALL words to match
+    const words = q.split(/\s+/).filter(Boolean);
+    return mc && words.every(w => haystack.includes(w));
   });
 }
 
@@ -695,14 +753,374 @@ function handleImg(event, id) {
   reader.readAsDataURL(file);
 }
 
-document.getElementById('suc').addEventListener('change', function() {
-  const s = SECS[this.value];
-  document.getElementById('footer-suc').textContent = s
-    ? `${s.label} · ${s.info}`
-    : 'Pastelería y Panadería Jacobo · Tijuana, B.C. · Guía de Precios 2025';
-});
+
 
 render();
 </script>
+
+<div class="guia-section" id="guia-section">
+<div class="guia-wrap">
+
+<div style="margin-bottom:1.5rem">
+  <p style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:4px">Guía de Precios 2025–2026</p>
+  <p style="font-size:13px;color:var(--text2)">Pastelería y Panadería Jacobo · Para cotizar un pastel, identifica la sección, el tamaño y suma los extras que apliquen.</p>
+</div>
+
+<!-- SABORES CLASICOS -->
+<div class="guia-block">
+  <div class="guia-block-title open" onclick="toggleBlock(this)">
+    <span>🎂 Sabores Clásicos — Redondos y Jacobino</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body open">
+    <div class="guia-info">
+      <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado</span>
+      <span class="guia-tag">Relleno incluido: Crema Chantilly o Crema de Queso</span>
+      <span class="guia-tag green">Toppings sin costo: M. Fresa · M. Cereza · M. Frambuesa · Nutella · Durazno</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">Jacobino</td><td>1</td><td class="precio">$190</td><td class="extra">+$40</td><td class="extra">+$20</td><td class="extra red">No aplica</td></tr>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$400</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$150</td></tr>
+        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$500</td><td class="extra">+$80</td><td class="extra">+$60</td><td class="extra">+$180</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$600</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$230</td></tr>
+        <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,150</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
+        <tr><td class="medida">14"</td><td>40–50</td><td class="precio">$1,650</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SABORES PREMIUM -->
+<div class="guia-block">
+  <div class="guia-block-title open" onclick="toggleBlock(this)">
+    <span>⭐ Sabores Premium — Redondos y Jacobino</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body open">
+    <div class="guia-info">
+      <span class="guia-tag">Sabores: Trilogía · Moca · Vainilla/Durazno · Red Velvet · Vainilla/M. Fresa · Vainilla/M. Frambuesa</span>
+      <span class="guia-tag yellow">Napolitano: solo en presentación circular, NO en Jacobino</span>
+      <span class="guia-tag">Relleno incluido: Crema Chantilly o Crema de Queso</span>
+      <span class="guia-tag green">Toppings sin costo: M. Fresa · M. Cereza · M. Frambuesa · Nutella · Durazno</span>
+      <span class="guia-tag yellow">Trilogía y Red Velvet: +$30 sobre precio clásico en 6"-10"</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">Jacobino</td><td>1</td><td class="precio">$190</td><td class="extra">+$40</td><td class="extra">+$20</td><td class="extra red">No aplica</td></tr>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$400</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$150</td></tr>
+        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$500</td><td class="extra">+$80</td><td class="extra">+$60</td><td class="extra">+$180</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$600</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$230</td></tr>
+        <tr><td class="medida">12" (Trilogía: $1,250)</td><td>20–25</td><td class="precio">$1,150</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
+        <tr><td class="medida">14"</td><td>40–50</td><td class="precio">$1,650</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 3 LECHES / ZANAHORIA -->
+<div class="guia-block">
+  <div class="guia-block-title open" onclick="toggleBlock(this)">
+    <span>🥕 3 Leches / Zanahoria — Redondo</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body open">
+    <div class="guia-info">
+      <span class="guia-tag">3 Leches: relleno de Crema Chantilly ligero (incluido)</span>
+      <span class="guia-tag">Zanahoria: Crema de Queso o Chantilly (incluido)</span>
+      <span class="guia-tag red">Toppings sin costo: NO APLICA</span>
+      <span class="guia-tag yellow">8" y 12" (en 3 Leches): NO APLICA</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Crema de Queso / Relleno Fresa / Piña / Coco / Nuez / Cajeta / Mermeladas</th><th>+ Relleno Plátano</th><th>+ Relleno Cheesecake o Flan</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$450</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$200</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$650</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$380</td></tr>
+        <tr><td class="medida">12" (solo Zanahoria)</td><td>20–25</td><td class="precio">$1,100</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$580</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BARRA NAPOLITANA -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🍫 Barra Napolitana</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Sabor: Napolitano (Chocolate + Vainilla + Red Velvet)</span>
+      <span class="guia-tag">Relleno incluido: Crema de Queso o Chantilly</span>
+      <span class="guia-tag red">Toppings sin costo: NO APLICA · Doble Cheesecake: NO APLICA</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">Barra</td><td>8–10</td><td class="precio">$450</td><td class="extra">+$100</td><td class="extra">+$100</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CORAZÓN / CUADRADO -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>❤️ Corazón / Cuadrado</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado · Zanahoria · Moca · Trilogía · Napolitano</span>
+      <span class="guia-tag">Relleno incluido: Crema de Queso o Chantilly</span>
+      <span class="guia-tag green">Toppings sin costo: M. Fresa · M. Cereza · M. Frambuesa · Nutella · Durazno</span>
+      <span class="guia-tag red">Doble Relleno Cheesecake: NO aplica en pasteles cuadrados</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$500</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$200</td></tr>
+        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$600</td><td class="extra">+$80</td><td class="extra">+$60</td><td class="extra">+$280</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$700</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$380</td></tr>
+        <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,400</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$580 (solo corazón)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PLANCHAS TRADICIONALES -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🍰 Planchas Tradicionales</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado · Moca · Trilogía · Napolitano</span>
+      <span class="guia-tag">Relleno base incluido: Chantilly</span>
+      <span class="guia-tag green">Toppings sin costo (incluidos): M. Fresa · M. Cereza · M. Frambuesa · Durazno · Plátano</span>
+      <span class="guia-tag yellow">Decorado con Soletas: +$60 · Decorado de Merengues: +$60</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Con Chantilly</th><th>Con Crema de Queso</th><th>+ Relleno extra (Fresa/Piña/Coco/Nuez/Cajeta/Nutella)</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">1/4 plancha</td><td>20–25</td><td class="precio">$950</td><td class="precio">$1,150</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
+        <tr><td class="medida">1/2 plancha</td><td>50</td><td class="precio">$1,500</td><td class="precio">$1,700</td><td class="extra">+$200</td><td class="extra">+$500</td></tr>
+        <tr><td class="medida">3/4 plancha</td><td>70</td><td class="precio">$2,150</td><td class="precio">$2,350</td><td class="extra">+$200</td><td class="extra">+$600</td></tr>
+        <tr><td class="medida">1 plancha</td><td>90–100</td><td class="precio">$2,800</td><td class="precio">$3,100</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PLANCHAS ZANAHORIA -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🥕 Planchas Zanahoria</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Relleno: Chantilly o Crema de Queso (incluido)</span>
+      <span class="guia-tag red">Toppings sin costo: NO APLICA</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno extra (Fresa/Piña/Coco/Nuez/Cajeta/Nutella/Plátano)</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">1/4 plancha</td><td>20–25</td><td class="precio">$1,200</td><td class="extra">+$200</td><td class="extra">+$500</td></tr>
+        <tr><td class="medida">1/2 plancha</td><td>50</td><td class="precio">$1,750</td><td class="extra">+$200</td><td class="extra">+$600</td></tr>
+        <tr><td class="medida">3/4 plancha</td><td>70</td><td class="precio">$2,500</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
+        <tr><td class="medida">1 plancha</td><td>90–100</td><td class="precio">$3,200</td><td class="extra">+$200</td><td class="extra">+$800</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PLANCHAS 3 LECHES -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🥛 Planchas 3 Leches</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado · Moca · Trilogía · Napolitano</span>
+      <span class="guia-tag">Relleno base incluido: Chantilly</span>
+      <span class="guia-tag red">Toppings sin costo: NO APLICA</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Con Chantilly</th><th>Con Crema de Queso</th><th>+ Relleno extra (Nutella/Plátano/Fresa/Cajeta)</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">1/4 plancha</td><td>20–25</td><td class="precio">$1,200</td><td class="precio">$1,350</td><td class="extra">+$120 Plátano / +$200 Fresa</td><td class="extra">+$300</td></tr>
+        <tr><td class="medida">1/2 plancha</td><td>50</td><td class="precio">$1,900</td><td class="precio">$2,100</td><td class="extra">+$100 / +$200</td><td class="extra">+$500</td></tr>
+        <tr><td class="medida">3/4 plancha</td><td>70</td><td class="precio">$2,500</td><td class="precio">$2,750</td><td class="extra">+$150 / +$200</td><td class="extra">+$600</td></tr>
+        <tr><td class="medida">1 plancha</td><td>90–100</td><td class="precio">$3,200</td><td class="precio">$3,500</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CREPAS -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🥞 Pasteles de Crepas</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Sabor: Vainilla · Relleno: Crema de Queso (incluido)</span>
+      <span class="guia-tag green">Toppings sin costo: Fresa · Nutella · Dulce de Leche · Oreo · M. Fresa · M. Cereza · M. Frambuesa</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Mermelada extra Frutos Rojos</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">Personal Jacobino</td><td>1</td><td class="precio">$80</td><td class="extra">—</td></tr>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$500</td><td class="extra">+$80</td></tr>
+        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$720</td><td class="extra">+$100</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$1,100</td><td class="extra">+$150</td></tr>
+        <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,500</td><td class="extra">+$200</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PAYS DE QUESO -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🍮 Pays de Queso / Cheesecakes</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <table class="guia-table">
+      <thead><tr><th>Producto</th><th>Medida</th><th>Porciones</th><th>Precio</th></tr></thead>
+      <tbody>
+        <tr><td>Pay de Queso Jacobino</td><td>Jacobino</td><td>1</td><td class="precio">$190</td></tr>
+        <tr><td>Pay de Queso Individual</td><td>Individual</td><td>1</td><td class="precio">$150</td></tr>
+        <tr><td>Pay de Queso Clásico</td><td>6"</td><td>4–5</td><td class="precio">$490</td></tr>
+        <tr><td>Pay de Queso con Frutos Rojos</td><td>6"</td><td>4–5</td><td class="precio">$490</td></tr>
+        <tr><td>Pay Snickers</td><td>6"</td><td>4–5</td><td class="precio">$450</td></tr>
+        <tr><td>Pay de Queso Clásico</td><td>8"</td><td>7–8</td><td class="precio">$670</td></tr>
+        <tr><td>Pay de Queso con Frutos Rojos</td><td>8"</td><td>7–8</td><td class="precio">$670</td></tr>
+        <tr><td>Pay Snickers</td><td>8"</td><td>7–8</td><td class="precio">$650</td></tr>
+        <tr><td>Cheesecake Blueberry Oreo</td><td>8"</td><td>7–8</td><td class="precio">$680</td></tr>
+        <tr><td>Pay de Queso Clásico</td><td>10"</td><td>9–10</td><td class="precio">$1,100</td></tr>
+        <tr><td>Cheesecake Blueberry Oreo</td><td>10"</td><td>9–10</td><td class="precio">$1,200</td></tr>
+        <tr><td>Pay de Queso Clásico</td><td>12"</td><td>12–15</td><td class="precio">$1,600</td></tr>
+        <tr><td>Plancha Cheesecake</td><td>1 plancha</td><td>90–100</td><td class="precio">$5,800</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PISOS -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🏛️ Pasteles de Pisos</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag yellow">Requiere depósito de bases (devuelto con nota de venta)</span>
+      <span class="guia-tag">Sabores y rellenos a elección según sección correspondiente</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Modelo</th><th>Medidas</th><th>Porciones</th><th>Precio base</th><th>Depósito bases</th></tr></thead>
+      <tbody>
+        <tr><td>2 Pisos — A</td><td>10" + 6"</td><td>~50</td><td class="precio">$2,800</td><td class="extra">$350</td></tr>
+        <tr><td>2 Pisos — B</td><td>12" + 8"</td><td>~70</td><td class="precio">$3,850</td><td class="extra">$350</td></tr>
+        <tr><td>3 Pisos</td><td>14" + 10" + 6"</td><td>~120</td><td class="precio">$6,850</td><td class="extra">$500</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CUPCAKES Y POSTRES -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🧁 Cupcakes · Donas · Hojaldre · Postres</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <table class="guia-table">
+      <thead><tr><th>Producto</th><th>Presentación</th><th>Precio</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td>Cupcake sin relleno</td><td>Pieza</td><td class="precio">$25</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Cupcake relleno crema</td><td>Pieza</td><td class="precio">$30</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Cupcake relleno queso</td><td>Pieza</td><td class="precio">$35</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Cupcake cubierta + queso</td><td>Pieza</td><td class="precio">$40</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Dona Hojaldre Mini</td><td>Mini</td><td class="precio">$40</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Dona Hojaldre Mediana</td><td>Mediana</td><td class="precio">$45</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Dona Hojaldre Personal</td><td>Personal</td><td class="precio">$60</td><td class="nota">Mín. 12 pzas</td></tr>
+        <tr><td>Hojaldre Media Barra</td><td>Media barra</td><td class="precio">$650</td><td></td></tr>
+        <tr><td>Hojaldre Barra Completa</td><td>Barra</td><td class="precio">$850</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- GELATINAS -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>🟣 Gelatinas</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <table class="guia-table">
+      <thead><tr><th>Producto</th><th>Presentación</th><th>Precio</th></tr></thead>
+      <tbody>
+        <tr><td>Gelatina Individual Mosaico</td><td>Individual</td><td class="precio">$45</td></tr>
+        <tr><td>Gelatina Individual Encapsulada</td><td>Individual</td><td class="precio">$45</td></tr>
+        <tr><td>Gelatina Familiar Mosaico</td><td>Familiar</td><td class="precio">$350</td></tr>
+        <tr><td>Gelatina Familiar Encapsulada</td><td>Familiar</td><td class="precio">$400</td></tr>
+        <tr><td>Gelatina Mosaico 1/2 Plancha</td><td>1/2 plancha</td><td class="precio">$1,100</td></tr>
+        <tr><td>Gelatina Encapsulada 1/2 Plancha</td><td>1/2 plancha</td><td class="precio">$1,400</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DECORACIONES -->
+<div class="guia-block">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>✨ Decoraciones y Adicionales</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag yellow">Macarrones y Merengues de color específico: solo en pedidos de mínimo 12 piezas</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Producto</th><th>Precio</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td>Macarrones</td><td class="precio">$30 c/u</td><td class="nota">Mín. 1 docena</td></tr>
+        <tr><td>Merengues</td><td class="precio">$20 c/u</td><td></td></tr>
+        <tr><td>Trufas</td><td class="precio">$25 c/u</td><td></td></tr>
+        <tr><td>Fresas con Chocolate</td><td class="precio">$25 c/u</td><td></td></tr>
+        <tr><td>Fresas adicionales</td><td class="precio">$10 c/u</td><td></td></tr>
+        <tr><td>Rosas Naturales (blancas, rosas o rojas)</td><td class="precio">$50 c/u</td><td></td></tr>
+        <tr><td>Corona de Merengues</td><td class="precio">$100</td><td></td></tr>
+        <tr><td>Impresión Papel de Azúcar o Arroz</td><td class="precio">$200</td><td class="nota">Papel de arroz: solo para mariposas</td></tr>
+        <tr><td>Decorado con Soletas</td><td class="precio">+$60</td><td></td></tr>
+        <tr><td>Decorado de Enjambre</td><td class="precio">+$30</td><td></td></tr>
+        <tr><td>Listones</td><td class="precio">$80</td><td></td></tr>
+        <tr><td>Corona Chica</td><td class="precio">$250</td><td></td></tr>
+        <tr><td>Corona Grande</td><td class="precio">$500</td><td></td></tr>
+        <tr><td>Cake Topper</td><td class="precio">$120</td><td></td></tr>
+        <tr><td>Esferas</td><td class="precio">$120</td><td class="nota">Por color</td></tr>
+        <tr><td>Cubierta en Fondant</td><td class="precio">A cotizar</td><td></td></tr>
+        <tr><td>Figura en Fondant</td><td class="precio">A cotizar</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+</div></div>
+</div>
+
+
+
 </body>
 </html>
