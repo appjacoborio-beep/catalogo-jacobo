@@ -158,6 +158,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 .pr-none{text-align:center;padding:1rem;color:var(--text3);font-size:13px}
 
 .card-highlight{box-shadow:0 0 0 3px #1a7f37 !important;transition:box-shadow .3s}
+
+.toggle-icon{font-size:18px;font-weight:300;color:var(--text3);line-height:1;transition:transform .2s;display:inline-block}
+.guia-block-title.open .toggle-icon{content:'−';transform:none}
 .site-footer{text-align:center;padding:2rem 1rem;font-size:11px;color:var(--text3);border-top:.5px solid var(--border);margin-top:2.5rem}
 @media(max-width:520px){.main{padding:1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}}
 </style>
@@ -854,6 +857,8 @@ function toggleBlock(titleEl) {
   titleEl.classList.toggle('open');
   const body = titleEl.nextElementSibling;
   body.classList.toggle('open');
+  const icon = titleEl.querySelector('.toggle-icon');
+  if (icon) icon.textContent = titleEl.classList.contains('open') ? '−' : '+';
 }
 
 function scrollFilters(id, amount) {
@@ -984,7 +989,7 @@ render();
   <p style="font-size:13px;color:var(--text2)">Pastelería y Panadería Jacobo · Identifica la sección y suma los extras que apliquen.</p>
 </div>
 <div class="precio-rapido">
-  <h2>🔍 Búsqueda rápida de precios</h2>
+  <h2>Búsqueda rápida de precios</h2>
   <div class="pr-search-row">
     <input class="pr-input" id="pr-input" type="text" placeholder='Ej: 10, 6", plancha, crepa, cupcake...' autocomplete="off"
       oninput="buscarPrecio()"
@@ -999,21 +1004,14 @@ render();
   </div>
 </div>
 
-<div class="guia-search-wrap" style="position:relative">
-  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/></svg>
-  <input type="text" id="guia-search" placeholder="Buscar: pastel, crepa, fresa, 10 pulgadas..." autocomplete="off"
-    oninput="var q=this.value.toLowerCase().trim();document.querySelectorAll('.guia-block').forEach(function(b){var t=b.textContent.toLowerCase();var show=!q||t.indexOf(q)>=0;b.style.display=show?'':'none';if(show&&q){var bd=b.querySelector('.guia-block-body');var tl=b.querySelector('.guia-block-title');if(bd&&!bd.classList.contains('open')){bd.classList.add('open');if(tl)tl.classList.add('open');}}})"
-  />
-  <div class="guia-suggestions" id="guia-suggestions"></div>
-<div class="guia-no-results" id="guia-no-results">No se encontraron secciones con esa búsqueda.</div>
 
 <!-- SABORES CLASICOS -->
 <div class="guia-block" data-keywords="clasico clasicos vainilla chocolate combinado redondo jacobino 6 8 10 12 14 pulgadas seis ocho diez doce catorce pastel relleno chantilly crema queso fresa piña pina coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
-  <div class="guia-block-title open" onclick="toggleBlock(this)">
-    <span>🎂 Sabores Clásicos — Redondos y Jacobino</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>Sabores Clásicos — Redondos y Jacobino</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="guia-block-body open">
+  <div class="guia-block-body">
     <div class="guia-info">
       <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado</span>
       <span class="guia-tag">Relleno incluido: Crema Chantilly o Crema de Queso</span>
@@ -1035,11 +1033,11 @@ render();
 
 <!-- SABORES PREMIUM -->
 <div class="guia-block" data-keywords="clasico clasicos vainilla chocolate combinado redondo jacobino 6 8 10 12 14 pulgadas seis ocho diez doce catorce pastel relleno chantilly crema queso fresa piña pina coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
-  <div class="guia-block-title open" onclick="toggleBlock(this)">
-    <span>⭐ Sabores Premium — Redondos y Jacobino</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>Sabores Premium — Redondos y Jacobino</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="guia-block-body open">
+  <div class="guia-block-body">
     <div class="guia-info">
       <span class="guia-tag">Sabores: Trilogía · Moca · Vainilla/Durazno · Red Velvet · Vainilla/M. Fresa · Vainilla/M. Frambuesa</span>
       <span class="guia-tag yellow">Napolitano: solo en presentación circular, NO en Jacobino</span>
@@ -1063,11 +1061,11 @@ render();
 
 <!-- 3 LECHES / ZANAHORIA -->
 <div class="guia-block" data-keywords="3 leches zanahoria redondo 6 10 12 pulgadas seis diez doce crema queso chantilly fresa piña coco nuez cajeta platano mermeladas cheesecake flan toppings precio cotizar">
-  <div class="guia-block-title open" onclick="toggleBlock(this)">
-    <span>🥕 3 Leches / Zanahoria — Redondo</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>3 Leches / Zanahoria — Redondo</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="guia-block-body open">
+  <div class="guia-block-body">
     <div class="guia-info">
       <span class="guia-tag">3 Leches: relleno de Crema Chantilly ligero (incluido)</span>
       <span class="guia-tag">Zanahoria: Crema de Queso o Chantilly (incluido)</span>
@@ -1088,8 +1086,8 @@ render();
 <!-- BARRA NAPOLITANA -->
 <div class="guia-block" data-keywords="barra napolitana napolitano chocolate vainilla red velvet fresa piña coco nuez cajeta platano precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🍫 Barra Napolitana</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Barra Napolitana</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1109,8 +1107,8 @@ render();
 <!-- CORAZÓN / CUADRADO -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>❤️ Corazón / Cuadrado</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Corazón / Cuadrado</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1134,8 +1132,8 @@ render();
 <!-- PLANCHAS TRADICIONALES -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🍰 Planchas Tradicionales</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Planchas Tradicionales</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1159,8 +1157,8 @@ render();
 <!-- PLANCHAS ZANAHORIA -->
 <div class="guia-block" data-keywords="plancha 3 leches 1/4 1/2 3/4 completa chantilly crema queso nutella platano fresa cajeta cheesecake">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🥕 Planchas Zanahoria</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Planchas Zanahoria</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1182,8 +1180,8 @@ render();
 <!-- PLANCHAS 3 LECHES -->
 <div class="guia-block" data-keywords="3 leches zanahoria redondo 6 10 12 pulgadas seis diez doce crema queso chantilly fresa piña coco nuez cajeta platano mermeladas cheesecake flan toppings precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🥛 Planchas 3 Leches</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Planchas 3 Leches</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1206,8 +1204,8 @@ render();
 <!-- CREPAS -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🥞 Pasteles de Crepas</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Pasteles de Crepas</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1230,8 +1228,8 @@ render();
 <!-- PAYS DE QUESO -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🍮 Pays de Queso / Cheesecakes</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Pays de Queso / Cheesecakes</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <table class="guia-table">
@@ -1258,8 +1256,8 @@ render();
 <!-- PISOS -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🏛️ Pasteles de Pisos</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Pasteles de Pisos</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
@@ -1280,8 +1278,8 @@ render();
 <!-- CUPCAKES Y POSTRES -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🧁 Cupcakes · Donas · Hojaldre · Postres</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Cupcakes · Donas · Hojaldre · Postres</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <table class="guia-table">
@@ -1304,8 +1302,8 @@ render();
 <!-- GELATINAS -->
 <div class="guia-block" data-keywords="corazon cuadrado forma 6 8 10 12 pulgadas seis ocho diez doce vainilla chocolate combinado zanahoria moca trilogia napolitano relleno chantilly crema queso fresa piña coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>🟣 Gelatinas</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Gelatinas</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <table class="guia-table">
@@ -1325,8 +1323,8 @@ render();
 <!-- DECORACIONES -->
 <div class="guia-block">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>✨ Decoraciones y Adicionales</span>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    <span>Decoraciones y Adicionales</span>
+    <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
