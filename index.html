@@ -96,7 +96,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 /* GUÍA DE PRECIOS */
 .guia-section{display:block}
 .guia-section.active{display:block}
-.catalog-section{display:none}
+#catalog-section{display:none}
 .catalog-section{display:block}
 .catalog-section.hidden{display:none}
 
@@ -156,6 +156,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 .pr-table .pr-size{color:var(--text2);font-size:12px}
 .pr-table .pr-price{font-weight:700;text-align:right}
 .pr-none{text-align:center;padding:1rem;color:var(--text3);font-size:13px}
+
+.card-highlight{box-shadow:0 0 0 3px #1a7f37 !important;transition:box-shadow .3s}
 .site-footer{text-align:center;padding:2rem 1rem;font-size:11px;color:var(--text3);border-top:.5px solid var(--border);margin-top:2.5rem}
 @media(max-width:520px){.main{padding:1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}}
 </style>
@@ -280,7 +282,7 @@ const products = [
   {id:21, name:"Pastel Corazón / Cuadrado", sub:"Sin doble relleno en cuadrado", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,400", note:"Sin doble relleno cheesecake en cuadrado"},
 
   // ── BARRA NAPOLITANA ──────────────────────────────────────────
-  {id:22, name:"Barra Napolitana",      sub:"Chocolate, Vainilla y Red Velvet", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly.", size:"Barra", persons:"8–10", price:"$450"},
+  {id:22, name:"Barra Napolitana",      sub:"Chocolate, Vainilla y Red Velvet", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly.", size:"Barra", persons:"8–10", price:"$500"},
 
   // ── PLANCHAS TRADICIONALES ────────────────────────────────────
   {id:23, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido. Crema de Queso +$200.", size:"1/4 plancha", persons:"20–25", price:"$950"},
@@ -414,9 +416,9 @@ const products = [
   {id:135, name:"Empanada Piña", sub:"", cat:"pan", desc:"Rellena de piña dulce.", size:"Pieza", persons:"", price:"$18"},
   {id:136, name:"Rol de Nuez y Crema", sub:"", cat:"pan", desc:"Suave con nuez y crema dulce.", size:"Pieza", persons:"", price:"$30"},
   {id:137, name:"Bolillo", sub:"", cat:"pan", desc:"Salado clásico de corteza crujiente.", size:"Pieza", persons:"", price:"$7"},
-  {id:138, name:"Bolillo de Pizza", sub:"", cat:"pan", desc:"Relleno con ingredientes estilo pizza.", size:"Pieza", persons:"", price:"$45"},
-  {id:139, name:"Bolillo con Chorizo", sub:"", cat:"pan", desc:"Relleno de chorizo sazonado.", size:"Pieza", persons:"", price:"$45"},
-  {id:140, name:"Bolillo con Queso y Rajas", sub:"", cat:"pan", desc:"Relleno con queso y rajas.", size:"Pieza", persons:"", price:"$45"},
+  {id:138, name:"Bolillo de Pizza", sub:"", cat:"pan", desc:"Relleno con ingredientes estilo pizza.", size:"Pieza", persons:"", price:"$40"},
+  {id:139, name:"Bolillo con Chorizo", sub:"", cat:"pan", desc:"Relleno de chorizo sazonado.", size:"Pieza", persons:"", price:"$40"},
+  {id:140, name:"Bolillo con Queso y Rajas", sub:"", cat:"pan", desc:"Relleno con queso y rajas.", size:"Pieza", persons:"", price:"$40"},
   // ── PLANCHA RED VELVET ───────────────────────────────────────
   {id:300, name:"Plancha Red Velvet", sub:"Relleno de queso crema", cat:"especiales", desc:"Red velvet en plancha. Cubierta en crema, fruta y chocolate blanco.", size:"1/4 plancha", persons:"20–25", price:"$900"},
   {id:301, name:"Plancha Red Velvet", sub:"Relleno de queso crema", cat:"especiales", desc:"Red velvet en plancha. Cubierta en crema, fruta y chocolate blanco.", size:"1/2 plancha", persons:"50", price:"$1,550"},
@@ -683,49 +685,119 @@ function jumpToSection(title) {
 
 
 
-function buscarPrecio() {
-  var q = document.getElementById('pr-input').value.toLowerCase().trim();
-  if (!q) return;
 
-  // Normalize: remove " symbol and common words
-  var qClean = q.replace(/"/g, '').replace(/pulgadas/gi, '').trim();
+// Map product categories/names to guia section titles
+var guiaSectionMap = {
+  'premium': 'Sabores Clásicos',
+  'pisos': 'Pasteles de Pisos',
+  'especiales': 'Planchas Tradicionales',
+  'crepas': 'Pasteles de Crepas',
+  'tartas': 'Pays de Queso / Cheesecakes',
+  'postres': 'Cupcakes · Donas · Hojaldre · Postres',
+  'mini': 'Cupcakes · Donas · Hojaldre · Postres',
+  'gelatinas': 'Gelatinas',
+  'pan': null
+};
 
-  var results = [];
-  products.forEach(function(p) {
-    if (p.active === false) return;
-    if (p.cat === 'extras' || p.cat === 'flores' || p.cat === 'follajes') return;
-    var haystack = [
-      p.name, p.sub, p.desc, p.size,
-      p.size.replace(/"/g,''),
-      p.price, catLabels[p.cat] || ''
-    ].join(' ').toLowerCase();
+function irAProducto(pid) {
+  // Find the product
+  var prod = null;
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].id === pid) { prod = products[i]; break; }
+  }
+  if (!prod) return;
 
-    var words = qClean.split(/\s+/).filter(Boolean);
-    var match = words.every(function(w) { return haystack.indexOf(w) >= 0; });
-    if (match) {
-      results.push(p);
+  // Find the matching guia-block by searching its text content
+  var blocks = document.querySelectorAll('.guia-block');
+  var targetBlock = null;
+
+  // Try to match by product name or category keywords
+  var searchTerms = [prod.name.toLowerCase()];
+  if (prod.cat === 'premium') searchTerms.push('sabores clásicos', 'sabores premium');
+  if (prod.cat === 'especiales') {
+    if (prod.name.toLowerCase().indexOf('plancha') >= 0) searchTerms.push('plancha');
+    else searchTerms.push('corazón');
+  }
+  if (prod.cat === 'crepas') searchTerms.push('crepas');
+  if (prod.cat === 'tartas') searchTerms.push('pays de queso', 'chocoflan', 'tarta');
+  if (prod.cat === 'pisos') searchTerms.push('pasteles de pisos');
+  if (prod.cat === 'postres' || prod.cat === 'mini') searchTerms.push('cupcakes');
+  if (prod.cat === 'gelatinas') searchTerms.push('gelatinas');
+
+  for (var b = 0; b < blocks.length; b++) {
+    var block = blocks[b];
+    var titleSpan = block.querySelector('.guia-block-title span');
+    if (!titleSpan) continue;
+    var titleText = titleSpan.textContent.toLowerCase();
+    for (var t = 0; t < searchTerms.length; t++) {
+      if (titleText.indexOf(searchTerms[t]) >= 0) {
+        targetBlock = block;
+        break;
+      }
     }
-  });
-
-  var tbody = document.getElementById('pr-tbody');
-  var title = document.getElementById('pr-results-title');
-  var resultsDiv = document.getElementById('pr-results');
-
-  if (results.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="3" class="pr-none">No se encontraron productos para "' + q + '"</td></tr>';
-  } else {
-    tbody.innerHTML = results.map(function(p) {
-      return '<tr>' +
-        '<td class="pr-name">' + p.name + (p.sub ? ' <span style="color:var(--text3);font-size:11px">· ' + p.sub + '</span>' : '') + '</td>' +
-        '<td class="pr-size">' + p.size + '</td>' +
-        '<td class="pr-price">' + p.price + '</td>' +
-      '</tr>';
-    }).join('');
+    if (targetBlock) break;
   }
 
-  title.textContent = results.length + ' resultado' + (results.length !== 1 ? 's' : '') + ' para "' + q + '"';
+  if (!targetBlock) return;
+
+  // Open the block if closed
+  var body = targetBlock.querySelector('.guia-block-body');
+  var titleEl = targetBlock.querySelector('.guia-block-title');
+  if (body && !body.classList.contains('open')) {
+    body.classList.add('open');
+    if (titleEl) titleEl.classList.add('open');
+  }
+
+  // Scroll to it and highlight
+  targetBlock.scrollIntoView({behavior: 'smooth', block: 'start'});
+  targetBlock.style.boxShadow = '0 0 0 3px #1a7f37';
+  targetBlock.style.borderRadius = '14px';
+  setTimeout(function() {
+    targetBlock.style.boxShadow = '';
+  }, 3000);
+}
+
+function buscarPrecio() {
+  var input = document.getElementById('pr-input');
+  var q = input ? input.value.toLowerCase().trim() : '';
+  if (!q) return;
+  var qClean = q.replace(/"/g,'').replace(/pulgadas/gi,'').trim();
+  var words = qClean.split(/\s+/).filter(function(w){ return w.length > 0; });
+  var results = [];
+  for (var i = 0; i < products.length; i++) {
+    var p = products[i];
+    if (p.active === false) continue;
+    if (p.cat === 'extras' || p.cat === 'flores' || p.cat === 'follajes') continue;
+    var hay = (p.name + ' ' + (p.sub||'') + ' ' + p.desc + ' ' + p.size + ' ' + p.size.replace(/"/g,'') + ' ' + p.price + ' ' + (catLabels[p.cat]||'')).toLowerCase();
+    var match = true;
+    for (var j = 0; j < words.length; j++) {
+      if (hay.indexOf(words[j]) < 0) { match = false; break; }
+    }
+    if (match) results.push(p);
+  }
+  var tbody = document.getElementById('pr-tbody');
+  var titleEl = document.getElementById('pr-results-title');
+  var resultsDiv = document.getElementById('pr-results');
+  if (!tbody || !resultsDiv) return;
+  if (results.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:1rem;color:#aeaeb2">No se encontraron productos para "' + q + '"</td></tr>';
+  } else {
+    var html = '';
+    for (var k = 0; k < results.length; k++) {
+      var p = results[k];
+      html += '<tr style="cursor:pointer" onclick="irAProducto(' + p.id + ')">' +
+        '<td style="padding:8px 10px;font-weight:500">' + p.name + (p.sub ? ' <span style="color:#aeaeb2;font-size:11px">· ' + p.sub + '</span>' : '') + '</td>' +
+        '<td style="padding:8px 10px;color:#6e6e73;font-size:12px">' + p.size + '</td>' +
+        '<td style="padding:8px 10px;font-weight:700;text-align:right">' + p.price + ' <span style="font-size:10px;color:#aeaeb2">↗</span></td>' +
+        '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+  if (titleEl) titleEl.textContent = results.length + ' resultado' + (results.length !== 1 ? 's' : '') + ' para "' + q + '"';
   resultsDiv.classList.add('open');
 }
+
+
 function filterGuia() {
   var q = document.getElementById('guia-search').value.toLowerCase().trim();
   var sugBox = document.getElementById('guia-suggestions');
@@ -902,8 +974,6 @@ function handleImg(event, id) {
 
 
 render();
-document.getElementById('catalog-section').style.display = 'none';
-document.getElementById('guia-section').style.display = 'block';
 </script>
 
 <div class="guia-section" id="guia-section">
@@ -917,8 +987,8 @@ document.getElementById('guia-section').style.display = 'block';
   <h2>🔍 Búsqueda rápida de precios</h2>
   <div class="pr-search-row">
     <input class="pr-input" id="pr-input" type="text" placeholder='Ej: 10, 6", plancha, crepa, cupcake...' autocomplete="off"
-      onkeydown="if(event.key==='Enter')buscarPrecio()"/>
-    <button class="pr-btn" onclick="buscarPrecio()">Buscar</button>
+      oninput="buscarPrecio()"
+      onkeydown="if(event.key==='Escape'){this.value='';document.getElementById('pr-results').classList.remove('open');}"/>
   </div>
   <div class="pr-results" id="pr-results">
     <p class="pr-results-title" id="pr-results-title"></p>
@@ -1030,7 +1100,7 @@ document.getElementById('guia-section').style.display = 'block';
     <table class="guia-table">
       <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th></tr></thead>
       <tbody>
-        <tr><td class="medida">Barra</td><td>8–10</td><td class="precio">$450</td><td class="extra">+$100</td><td class="extra">+$100</td></tr>
+        <tr><td class="medida">Barra</td><td>8–10</td><td class="precio">$500</td><td class="extra">+$100</td><td class="extra">+$100</td></tr>
       </tbody>
     </table>
   </div>
