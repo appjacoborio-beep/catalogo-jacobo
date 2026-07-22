@@ -530,6 +530,8 @@ const products = [
   {id:502, name:"Corona Grande",  sub:"", cat:"extras", desc:"Corona grande para decoración.", size:"Pieza", persons:"", price:"$500"},
   {id:503, name:"Cake Topper",    sub:"", cat:"extras", desc:"Cake topper para decoración de pastel.", size:"Pieza", persons:"", price:"$120"},
   {id:504, name:"Esferas",        sub:"Por color", cat:"extras", desc:"Esferas decorativas. Precio por color.", size:"Por color", persons:"", price:"$120"},
+
+  {id:370, name:"Plancha de Crepas", sub:"Mermeladas incluidas: Fresa, Frambuesa, Mango, Cereza, Arroz con leche", cat:"crepas", desc:"Plancha completa de crepas. Rellenos incluidos: mermeladas variadas. Extras: Fresa natural o Cajeta +$350, Frutos Rojos +$450.", size:"1 plancha", persons:"100–120", price:"$4,600"},
   // ── EXTRAS, RELLENOS Y ADICIONALES ───────────────────────────
 
   // Toppings sin costo
@@ -1213,13 +1215,14 @@ render();
       <span class="guia-tag green">Toppings sin costo: Fresa · Nutella · Dulce de Leche · Oreo · M. Fresa · M. Cereza · M. Frambuesa</span>
     </div>
     <table class="guia-table">
-      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Mermelada extra Frutos Rojos</th></tr></thead>
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Fresa natural / Cajeta</th><th>+ Frutos Rojos</th></tr></thead>
       <tbody>
-        <tr><td class="medida">Personal Jacobino</td><td>1</td><td class="precio">$80</td><td class="extra">—</td></tr>
-        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$500</td><td class="extra">+$80</td></tr>
-        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$720</td><td class="extra">+$100</td></tr>
-        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$1,100</td><td class="extra">+$150</td></tr>
-        <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,500</td><td class="extra">+$200</td></tr>
+        <tr><td class="medida">Personal Jacobino</td><td>1</td><td class="precio">$80</td><td class="extra">—</td><td class="extra">—</td></tr>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$500</td><td class="extra">+$80</td><td></td></tr>
+        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$720</td><td class="extra">+$100</td><td></td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$1,100</td><td class="extra">+$150</td><td></td></tr>
+        <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,500</td><td class="extra">+$200</td><td></td></tr>
+        <tr><td class="medida">1 plancha</td><td>100–120</td><td class="precio">$4,600</td><td class="extra">+$350</td><td class="extra">+$450</td></tr>
       </tbody>
     </table>
   </div>
