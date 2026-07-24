@@ -648,6 +648,10 @@ const rellenos = [
 const catLabels = {premium:"Pastel",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
 const catBadge  = {premium:"b-premium",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes"};
 
+// URL del Apps Script Web App que guarda las fotos en el Google Sheet compartido
+// (para que todos vean las mismas imágenes, sin importar el navegador/dispositivo)
+const FOTOS_API = 'https://script.google.com/macros/s/AKfycbz_KRk5h9gd0zidGf1dHRILZOwTUUe6orDFjsoDc-WYSCMHQLLAmLKSXT8K4r_b97sX5w/exec';
+
 
 let activeFilter = "todos";
 let imgStore = {};
@@ -1013,9 +1017,8 @@ function uploadToCloudinary(id, file) {
   .then(function(data) {
     if (data.secure_url) {
       imgStore[id] = data.secure_url;
-      // Save to localStorage for persistence
-      try { localStorage.setItem('img_' + id, data.secure_url); } catch(e){}
       render();
+      guardarFotoCompartida(id, data.secure_url);
     } else {
       console.error('Respuesta de Cloudinary sin secure_url:', data);
       var msg = (data && data.error && data.error.message) ? data.error.message : 'Error desconocido';
@@ -1032,15 +1035,43 @@ function uploadToCloudinary(id, file) {
 
 
 
-// Load saved images from localStorage
-try {
-  Object.keys(localStorage).forEach(function(k) {
-    if (k.startsWith('img_')) {
-      var id = parseInt(k.replace('img_', ''));
-      if (!isNaN(id)) imgStore[id] = localStorage.getItem(k);
-    }
-  });
-} catch(e){}
+// Guarda la foto en el Google Sheet compartido (vía Apps Script) para que
+// todos los que abran el catálogo vean la misma imagen, sin importar su dispositivo.
+function guardarFotoCompartida(id, url) {
+  if (!FOTOS_API || FOTOS_API.indexOf('PEGAR_AQUI') === 0) return;
+  var params = 'action=save&id=' + encodeURIComponent(id) +
+               '&url=' + encodeURIComponent(url) +
+               '&pin=' + encodeURIComponent(EDIT_PASS);
+  fetch(FOTOS_API + '?' + params)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (!data || !data.ok) {
+        console.error('No se pudo guardar la foto en el Sheet compartido:', data);
+      }
+    })
+    .catch(function(err){
+      console.error('Error de red al guardar la foto compartida:', err);
+    });
+}
+
+// Carga todas las fotos guardadas por cualquier persona desde el Sheet compartido
+function cargarFotosCompartidas() {
+  if (!FOTOS_API || FOTOS_API.indexOf('PEGAR_AQUI') === 0) return;
+  fetch(FOTOS_API)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (data && typeof data === 'object') {
+        Object.keys(data).forEach(function(id){
+          imgStore[id] = data[id];
+        });
+        render();
+      }
+    })
+    .catch(function(err){
+      console.error('Error de red al cargar fotos compartidas:', err);
+    });
+}
+cargarFotosCompartidas();
 render();
 </script>
 
