@@ -1018,11 +1018,14 @@ function uploadToCloudinary(id, file) {
       try { localStorage.setItem('img_' + id, data.secure_url); } catch(e){}
       render();
     } else {
-      alert('Error al subir la imagen. Intenta de nuevo.');
+      console.error('Respuesta de Cloudinary sin secure_url:', data);
+      var msg = (data && data.error && data.error.message) ? data.error.message : 'Error desconocido';
+      alert('Error al subir la imagen: ' + msg);
       render();
     }
   })
-  .catch(function() {
+  .catch(function(err){
+    console.error('Error de red al subir a Cloudinary:', err);
     alert('Error de conexión al subir la imagen.');
     render();
   });
