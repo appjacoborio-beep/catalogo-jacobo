@@ -1003,7 +1003,7 @@ function uploadToCloudinary(id, file) {
 
   var formData = new FormData();
   formData.append('file', file);
-  formData.append('upload_preset', 'ml_default');
+  formData.append('upload_preset', 'jacobo_catalogo');
 
   fetch('https://api.cloudinary.com/v1_1/doh4x3jnz/image/upload', {
     method: 'POST',
