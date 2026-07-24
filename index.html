@@ -161,6 +161,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 
 .toggle-icon{font-size:18px;font-weight:300;color:var(--text3);line-height:1;transition:transform .2s;display:inline-block}
 .guia-block-title.open .toggle-icon{content:'−';transform:none}
+
+.edit-badge{position:fixed;bottom:16px;right:16px;background:#1a7f37;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;border-radius:99px;display:none;z-index:999;cursor:pointer}
+.edit-badge.on{display:block}
 .site-footer{text-align:center;padding:2rem 1rem;font-size:11px;color:var(--text3);border-top:.5px solid var(--border);margin-top:2.5rem}
 @media(max-width:520px){.main{padding:1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}}
 </style>
@@ -962,24 +965,89 @@ function toggleDesc(id, btn) {
   btn.textContent = el.classList.contains('expanded') ? 'Ver menos' : 'Ver más';
 }
 
-function triggerUpload(id) {
-  const idx = getFiltered().findIndex(p => p.id === id);
-  if (idx >= 0) {
-    const inputs = document.querySelectorAll('.img-slot input[type=file]');
-    if (inputs[idx]) inputs[idx].click();
+
+var editMode = false;
+var EDIT_PASS = '248613';
+
+function checkEditMode() {
+  var pass = prompt('Contraseña para modo edición:');
+  if (pass === EDIT_PASS) {
+    editMode = true;
+    document.getElementById('edit-badge').classList.add('on');
+    render();
+  } else if (pass !== null) {
+    alert('Contraseña incorrecta.');
   }
 }
 
-function handleImg(event, id) {
-  const file = event.target.files[0];
+function exitEditMode() {
+  editMode = false;
+  document.getElementById('edit-badge').classList.remove('on');
+  render();
+}
+
+function triggerUpload(id) {
+  if (!editMode) { checkEditMode(); return; }
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    uploadToCloudinary(id, file);
+  };
+  input.click();
+}
+
+function uploadToCloudinary(id, file) {
+  var slot = document.querySelector('.img-slot[onclick*="triggerUpload(' + id + ')"]');
+  if (slot) slot.innerHTML = '<div style="color:#6e6e73;font-size:11px;padding:1rem;text-align:center">Subiendo...</div>';
+
+  var formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'ml_default');
+  formData.append('folder', 'jacobo-catalogo');
+
+  fetch('https://api.cloudinary.com/v1_1/doh4x3jnz/image/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    if (data.secure_url) {
+      imgStore[id] = data.secure_url;
+      // Save to localStorage for persistence
+      try { localStorage.setItem('img_' + id, data.secure_url); } catch(e){}
+      render();
+    } else {
+      alert('Error al subir la imagen. Intenta de nuevo.');
+      render();
+    }
+  })
+  .catch(function() {
+    alert('Error de conexión al subir la imagen.');
+    render();
+  });
+}
+
+function handleImg(id, event) {
+  var file = event.target.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => { imgStore[id] = e.target.result; render(); };
-  reader.readAsDataURL(file);
+  uploadToCloudinary(id, file);
 }
 
 
 
+
+// Load saved images from localStorage
+try {
+  Object.keys(localStorage).forEach(function(k) {
+    if (k.startsWith('img_')) {
+      var id = parseInt(k.replace('img_', ''));
+      if (!isNaN(id)) imgStore[id] = localStorage.getItem(k);
+    }
+  });
+} catch(e){}
 render();
 </script>
 
@@ -1364,5 +1432,7 @@ render();
 
 
 
+
+<div class="edit-badge" id="edit-badge" onclick="exitEditMode()">✏️ Modo edición — Tap para salir</div>
 </body>
 </html>
