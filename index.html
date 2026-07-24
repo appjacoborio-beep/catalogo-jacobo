@@ -55,7 +55,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 .img-slot svg{color:var(--text3)}
 .img-slot span{font-size:11px;color:var(--text3)}
 .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .cb{padding:10px 12px 12px}
 .badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;margin-bottom:6px;background:var(--bg2);color:var(--text2)}
 .b-flores,.b-follajes{background:#f0faf0;color:#1a5c1a}
@@ -245,7 +244,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 
 <footer class="site-footer">
   Pastelería y Panadería Jacobo · Tijuana, B.C. · Guía de Precios 2025–2026 · Uso interno
-</fo</footer>
+</footer>
 
 <script>
 // ─── SABORES ─────────────────────────────────────────────────────────────────
@@ -935,7 +934,6 @@ function render() {
         <div class="img-slot" onclick="triggerUpload(${p.id})" title="Clic para agregar foto">
           ${img ? `<img src="${img}" alt="${p.name}"/>` :
             `<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/></svg><span>Agregar foto</span>`}
-          <input type="file" accept="image/*" onchange="handleImg(event,${p.id})" onclick="event.stopPropagation()"/>
         </div>` : ''}
         <div class="cb">
           <span class="badge ${catBadge[p.cat]}">${catLabels[p.cat]}</span>
@@ -1029,13 +1027,6 @@ function uploadToCloudinary(id, file) {
     render();
   });
 }
-
-function handleImg(id, event) {
-  var file = event.target.files[0];
-  if (!file) return;
-  uploadToCloudinary(id, file);
-}
-
 
 
 
@@ -1427,9 +1418,7 @@ render();
 </div>
 
 </div>
-</div></div>
 </div>
-
 
 
 
