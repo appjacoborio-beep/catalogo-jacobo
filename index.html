@@ -164,7 +164,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 .edit-badge{position:fixed;bottom:16px;right:16px;background:#1a7f37;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;border-radius:99px;display:none;z-index:999;cursor:pointer}
 .edit-badge.on{display:block}
 .site-footer{text-align:center;padding:2rem 1rem;font-size:11px;color:var(--text3);border-top:.5px solid var(--border);margin-top:2.5rem}
-@media(max-width:520px){.main{padding:1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}}
+@media(max-width:520px){.main{padding:1rem}.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}.site-header{flex-wrap:wrap}.nav-tabs{margin-left:0;width:100%;order:3}}
 </style>
 </head>
 <body>
@@ -180,6 +180,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
   <nav class="nav-tabs">
     <button class="nav-tab active" onclick="switchView('guia',this)">Guía de Precios</button>
     <button class="nav-tab" onclick="switchView('catalogo',this)">Catálogo</button>
+    <button class="nav-tab" onclick="switchView('temporada',this)">🍂 Temporada</button>
   </nav>
 </header>
 
@@ -725,12 +726,16 @@ function switchView(view, btn) {
   btn.classList.add('active');
   const catalog = document.getElementById('catalog-section');
   const guia = document.getElementById('guia-section');
-  if (view === 'catalogo') {
+  if (view === 'catalogo' || view === 'temporada') {
     catalog.style.display = 'block';
     guia.style.display = 'none';
   } else {
     catalog.style.display = 'none';
     guia.style.display = 'block';
+  }
+  if (view === 'temporada') {
+    var chip = document.querySelector('.chip[onclick*="temporada"]');
+    if (chip) setFilter('temporada', chip);
   }
 }
 
