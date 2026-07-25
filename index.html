@@ -208,6 +208,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
   <div class="filter-scroll">
     <button class="chip active" onclick="setFilter('todos',this)">🗂 Todos</button>
     <button class="chip" onclick="setFilter('premium',this)">🎂 Pasteles</button>
+    <button class="chip" onclick="setFilter('tresleches',this)">🥛 3 Leches</button>
+    <button class="chip" onclick="setFilter('zanahoria',this)">🥕 Zanahoria</button>
+    <button class="chip" onclick="setFilter('temporada',this)">🍂 Temporada</button>
     <button class="chip" onclick="setFilter('pisos',this)">🏛️ Pisos</button>
     <button class="chip" onclick="setFilter('especiales',this)">❤️ Corazón / Plancha</button>
     <button class="chip" onclick="setFilter('crepas',this)">🥞 Crepas</button>
@@ -258,22 +261,75 @@ const SABORES_NOTA = "*Napolitano solo presentación circular · *Vainilla/Duraz
 const products = [
 
   // ── PASTELES REDONDOS / JACOBINOS ─────────────────────────────
-  {id:1,  name:"Pastel Jacobino",        sub:"Vainilla, Chocolate, Combinado, Moca, Red Velvet, Blueberry, Limón, Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
-  {id:2,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
-  {id:3,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
-  {id:4,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
-  {id:5,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
-  {id:6,  name:"Pastel Redondo",         sub:"Clásico — Vainilla, Chocolate, Combinado, Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
-  {id:7,  name:"Pastel Redondo Premium", sub:"Trilogía, Moca, Vainilla/Durazno, Red Velvet, Napolitano*", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
-  {id:8,  name:"Pastel Redondo Premium", sub:"Trilogía, Moca, Vainilla/Durazno, Red Velvet, Napolitano*", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
-  {id:9,  name:"Pastel Redondo Premium", sub:"Trilogía, Moca, Vainilla/Durazno, Red Velvet, Napolitano*", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
-  {id:10, name:"Pastel Redondo Premium", sub:"Trilogía, Moca, Vainilla/Durazno, Red Velvet, Napolitano*", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
-  {id:11, name:"Pastel Redondo Premium", sub:"Trilogía, Moca, Vainilla/Durazno, Red Velvet, Napolitano*", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  // Jacobino individual, por sabor (mismo precio en todos los sabores)
+  {id:600, name:"Pastel Jacobino", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:601, name:"Pastel Jacobino", sub:"Chocolate", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:602, name:"Pastel Jacobino", sub:"Combinado", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:603, name:"Pastel Jacobino", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:604, name:"Pastel Jacobino", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:605, name:"Pastel Jacobino", sub:"Blueberry", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:606, name:"Pastel Jacobino", sub:"Limón", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  {id:607, name:"Pastel Jacobino", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos (M. Fresa, Cereza, Frambuesa, Nutella, Durazno).", size:"Jacobino", persons:"1", price:"$190"},
+  // Jacobino Cup (vaso de pastel, varios sabores)
+  {id:608, name:"Jacobino Cup", sub:"Vainilla, Chocolate, Combinado, Moca, Red Velvet, Blueberry, Limón, Trilogía", cat:"premium", desc:"Vaso individual de pastel en capas. Mismos sabores y relleno que el Jacobino tradicional.", size:"Vaso", persons:"1", price:"$80"},
 
-  // ── 3 LECHES / ZANAHORIA ──────────────────────────────────────
-  {id:12, name:"3 Leches / Zanahoria",   sub:"Redondo", cat:"premium", desc:"3 Leches: Chantilly ligero. Zanahoria: Crema de queso o Chantilly. Sin toppings sin costo.", size:'6"', persons:"4–5", price:"$450"},
-  {id:13, name:"3 Leches / Zanahoria",   sub:"Redondo", cat:"premium", desc:"3 Leches: Chantilly ligero. Zanahoria: Crema de queso o Chantilly. Sin toppings sin costo.", size:'10"', persons:"12–15", price:"$650"},
-  {id:14, name:"Zanahoria",   sub:"Redondo", cat:"premium", desc:"3 Leches: Chantilly ligero. Zanahoria: Crema de queso o Chantilly. Sin toppings sin costo.", size:'12"', persons:"20–25", price:"$1,300"},
+  // Pastel Redondo Clásico, por sabor y tamaño (mismo precio en los 4 sabores)
+  {id:609, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:610, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:611, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:612, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
+  {id:613, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:614, name:"Pastel Redondo", sub:"Chocolate", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:615, name:"Pastel Redondo", sub:"Chocolate", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:616, name:"Pastel Redondo", sub:"Chocolate", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:617, name:"Pastel Redondo", sub:"Chocolate", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
+  {id:618, name:"Pastel Redondo", sub:"Chocolate", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:619, name:"Pastel Redondo", sub:"Combinado", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:620, name:"Pastel Redondo", sub:"Combinado", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:621, name:"Pastel Redondo", sub:"Combinado", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:622, name:"Pastel Redondo", sub:"Combinado", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
+  {id:623, name:"Pastel Redondo", sub:"Combinado", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:624, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:625, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:626, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:627, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
+  {id:628, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+
+  // Pastel Redondo Premium, por sabor y tamaño
+  {id:629, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$430"},
+  {id:630, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$530"},
+  {id:631, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$630"},
+  {id:632, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250"},
+  {id:633, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:634, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:635, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:636, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:637, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150"},
+  {id:638, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:639, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:640, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:641, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:642, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150"},
+  {id:643, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:644, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$430"},
+  {id:645, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$530"},
+  {id:646, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$630"},
+  {id:647, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150"},
+  {id:648, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+  {id:649, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400"},
+  {id:650, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500"},
+  {id:651, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600"},
+  {id:652, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150"},
+  {id:653, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650"},
+
+  // ── 3 LECHES (por separado de Zanahoria) ───────────────────────
+  {id:670, name:"Pastel 3 Leches", sub:"Redondo", cat:"tresleches", desc:"Relleno de Crema Chantilly ligero (incluido). Sin toppings sin costo.", size:'6"', persons:"4–5", price:"$450"},
+  {id:671, name:"Pastel 3 Leches", sub:"Redondo", cat:"tresleches", desc:"Relleno de Crema Chantilly ligero (incluido). Sin toppings sin costo.", size:'10"', persons:"12–15", price:"$650"},
+
+  // ── ZANAHORIA (por separado de 3 Leches) ────────────────────────
+  {id:672, name:"Pastel Zanahoria", sub:"Redondo", cat:"zanahoria", desc:"Relleno de Crema de Queso o Chantilly (incluido). Sin toppings sin costo.", size:'6"', persons:"4–5", price:"$450"},
+  {id:673, name:"Pastel Zanahoria", sub:"Redondo", cat:"zanahoria", desc:"Relleno de Crema de Queso o Chantilly (incluido). Sin toppings sin costo.", size:'10"', persons:"12–15", price:"$650"},
+  {id:674, name:"Pastel Zanahoria", sub:"Redondo", cat:"zanahoria", desc:"Relleno de Crema de Queso o Chantilly (incluido). Sin toppings sin costo.", size:'12"', persons:"20–25", price:"$1,300"},
 
   // ── PASTELES DE PISOS ─────────────────────────────────────────
   {id:15, name:"Pastel 2 Pisos — A",    sub:"Inferior 10\" + Superior 6\"", cat:"pisos", desc:"Depósito de bases $350 (devuelto con nota). Sabores y rellenos a elección. Precio a cotizar.", size:"2 pisos", persons:"~50", price:"$2,800", note:"Depósito bases $350"},
@@ -338,7 +394,6 @@ const products = [
   {id:56, name:"Cupcakes",             sub:"Relleno de crema", cat:"postres", desc:"Cupcake con relleno de crema.", size:"Pieza", persons:"1", price:"$30 c/u", note:"Mínimo 12 pzas"},
   {id:57, name:"Cupcakes",             sub:"Relleno de queso", cat:"postres", desc:"Cupcake con relleno de queso.", size:"Pieza", persons:"1", price:"$35 c/u", note:"Mínimo 12 pzas"},
   {id:58, name:"Cupcakes",             sub:"Cubierta y relleno de queso", cat:"postres", desc:"Cupcake con cubierta de queso y relleno de queso.", size:"Pieza", persons:"1", price:"$40 c/u", note:"Mínimo 12 pzas"},
-  {id:59, name:"Donas Hojaldre",       sub:"Mediana", cat:"postres", desc:"Dona de hojaldre rellena, presentación mediana.", size:"Mediana", persons:"1–2", price:"$45", note:"Mínimo 12 pzas"},
   {id:60, name:"Donas Hojaldre",       sub:"Personal", cat:"postres", desc:"Dona de hojaldre rellena, presentación personal.", size:"Personal", persons:"1", price:"$60", note:"Mínimo 12 pzas"},
 
   // ── MINI POSTRES ─────────────────────────────────────────────
@@ -645,8 +700,8 @@ const rellenos = [
 ];
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
-const catLabels = {premium:"Pastel",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
-const catBadge  = {premium:"b-premium",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes"};
+const catLabels = {premium:"Pastel",tresleches:"3 Leches",zanahoria:"Zanahoria",temporada:"Temporada",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
+const catBadge  = {premium:"b-premium",tresleches:"b-tresleches",zanahoria:"b-zanahoria",temporada:"b-temporada",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes"};
 
 // URL del Apps Script Web App que guarda las fotos en el Google Sheet compartido
 // (para que todos vean las mismas imágenes, sin importar el navegador/dispositivo)
@@ -700,6 +755,9 @@ function jumpToSection(title) {
 // Map product categories/names to guia section titles
 var guiaSectionMap = {
   'premium': 'Sabores Clásicos',
+  'tresleches': '3 Leches — Redondo',
+  'zanahoria': 'Zanahoria — Redondo',
+  'temporada': 'Pasteles de Temporada',
   'pisos': 'Pasteles de Pisos',
   'especiales': 'Planchas Tradicionales',
   'crepas': 'Pasteles de Crepas',
@@ -725,6 +783,9 @@ function irAProducto(pid) {
   // Try to match by product name or category keywords
   var searchTerms = [prod.name.toLowerCase()];
   if (prod.cat === 'premium') searchTerms.push('sabores clásicos', 'sabores premium');
+  if (prod.cat === 'tresleches') searchTerms.push('3 leches');
+  if (prod.cat === 'zanahoria') searchTerms.push('zanahoria');
+  if (prod.cat === 'temporada') searchTerms.push('temporada');
   if (prod.cat === 'especiales') {
     if (prod.name.toLowerCase().indexOf('plancha') >= 0) searchTerms.push('plancha');
     else searchTerms.push('corazón');
@@ -1153,25 +1214,64 @@ render();
   </div>
 </div>
 
-<!-- 3 LECHES / ZANAHORIA -->
-<div class="guia-block" data-keywords="3 leches zanahoria redondo 6 10 12 pulgadas seis diez doce crema queso chantilly fresa piña coco nuez cajeta platano mermeladas cheesecake flan toppings precio cotizar">
+<!-- 3 LECHES -->
+<div class="guia-block" data-keywords="3 leches redondo 6 10 pulgadas seis diez crema chantilly ligero mermeladas cheesecake flan toppings precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>3 Leches / Zanahoria — Redondo</span>
+    <span>3 Leches — Redondo</span>
     <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
-      <span class="guia-tag">3 Leches: relleno de Crema Chantilly ligero (incluido)</span>
-      <span class="guia-tag">Zanahoria: Crema de Queso o Chantilly (incluido)</span>
+      <span class="guia-tag">Relleno incluido: Crema Chantilly ligero</span>
       <span class="guia-tag red">Toppings sin costo: NO APLICA</span>
-      <span class="guia-tag yellow">8" y 12" (en 3 Leches): NO APLICA</span>
+      <span class="guia-tag yellow">Solo disponible en 6" y 10" (8" y 12" no aplican en 3 Leches)</span>
     </div>
     <table class="guia-table">
       <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Crema de Queso / Relleno Fresa / Piña / Coco / Nuez / Cajeta / Mermeladas</th><th>+ Relleno Plátano</th><th>+ Relleno Cheesecake o Flan</th></tr></thead>
       <tbody>
         <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$450</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$200</td></tr>
         <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$650</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$380</td></tr>
-        <tr><td class="medida">12" (solo Zanahoria)</td><td>20–25</td><td class="precio">$1,300</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$580</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ZANAHORIA -->
+<div class="guia-block" data-keywords="zanahoria redondo 6 10 12 pulgadas seis diez doce crema queso chantilly mermeladas cheesecake flan toppings precio cotizar">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>Zanahoria — Redondo</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Relleno incluido: Crema de Queso o Chantilly</span>
+      <span class="guia-tag red">Toppings sin costo: NO APLICA</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta / Mermeladas</th><th>+ Relleno Plátano</th><th>+ Relleno Cheesecake o Flan</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$450</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$200</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$650</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$380</td></tr>
+        <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,300</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$580</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TEMPORADA -->
+<div class="guia-block" data-keywords="temporada estacional edicion especial navidad halloween dia de muertos san valentin precio cotizar">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>Pasteles de Temporada</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag yellow">Sección para pasteles de edición limitada / temporada — se agregan conforme se definan</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Producto</th><th>Medida</th><th>Precio</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td colspan="4" style="text-align:center;color:var(--text3);padding:14px">Sin productos de temporada activos por ahora</td></tr>
       </tbody>
     </table>
   </div>
@@ -1385,7 +1485,6 @@ render();
         <tr><td>Cupcake relleno queso</td><td>Pieza</td><td class="precio">$35</td><td class="nota">Mín. 12 pzas</td></tr>
         <tr><td>Cupcake cubierta + queso</td><td>Pieza</td><td class="precio">$40</td><td class="nota">Mín. 12 pzas</td></tr>
         <tr><td>Dona Hojaldre Mini</td><td>Mini</td><td class="precio">$40</td><td class="nota">Mín. 12 pzas</td></tr>
-        <tr><td>Dona Hojaldre Mediana</td><td>Mediana</td><td class="precio">$45</td><td class="nota">Mín. 12 pzas</td></tr>
         <tr><td>Dona Hojaldre Personal</td><td>Personal</td><td class="precio">$60</td><td class="nota">Mín. 12 pzas</td></tr>
         <tr><td>Hojaldre Media Barra</td><td>Media barra</td><td class="precio">$650</td><td></td></tr>
         <tr><td>Hojaldre Barra Completa</td><td>Barra</td><td class="precio">$850</td><td></td></tr>
