@@ -274,7 +274,7 @@ const products = [
   // Jacobino Cup (vaso de pastel, varios sabores)
   {id:608, name:"Jacobino Cup", sub:"Vainilla, Chocolate, Combinado, Moca, Red Velvet, Blueberry, Limón, Trilogía", cat:"premium", desc:"Vaso individual de pastel en capas. Mismos sabores y relleno que el Jacobino tradicional.", size:"Vaso", persons:"1", price:"$80", kw:"vainilla chocolate combinado moca red velvet blueberry arandano limon trilogia"},
 
-  // Pastel Redondo Clásico, por sabor y tamaño (mismo precio en los 4 sabores)
+  // Pastel Redondo, por sabor y tamaño (mismo precio en todos los sabores; sin distinción Premium)
   {id:609, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"vainilla vanilla"},
   {id:610, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"vainilla vanilla"},
   {id:611, name:"Pastel Redondo", sub:"Vainilla", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"vainilla vanilla"},
@@ -295,34 +295,26 @@ const products = [
   {id:626, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"moca moka mocha cafe coffee"},
   {id:627, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250", kw:"moca moka mocha cafe coffee"},
   {id:628, name:"Pastel Redondo", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"moca moka mocha cafe coffee"},
-
-  // Pastel Redondo Premium, por sabor y tamaño
-  {id:629, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$430", kw:"trilogia trilogy tres sabores"},
-  {id:630, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$530", kw:"trilogia trilogy tres sabores"},
-  {id:631, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$630", kw:"trilogia trilogy tres sabores"},
-  {id:632, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250", kw:"trilogia trilogy tres sabores"},
-  {id:633, name:"Pastel Redondo Premium", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"trilogia trilogy tres sabores"},
-  {id:634, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"moca moka mocha cafe coffee"},
-  {id:635, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"moca moka mocha cafe coffee"},
-  {id:636, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"moca moka mocha cafe coffee"},
-  {id:637, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150", kw:"moca moka mocha cafe coffee"},
-  {id:638, name:"Pastel Redondo Premium", sub:"Moca", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"moca moka mocha cafe coffee"},
-  {id:639, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"vainilla durazno peach melocoton"},
-  {id:640, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"vainilla durazno peach melocoton"},
-  {id:641, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"vainilla durazno peach melocoton"},
-  {id:642, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150", kw:"vainilla durazno peach melocoton"},
-  {id:643, name:"Pastel Redondo Premium", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"vainilla durazno peach melocoton"},
-  {id:644, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$430", kw:"red velvet terciopelo rojo redvelvet"},
-  {id:645, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$530", kw:"red velvet terciopelo rojo redvelvet"},
-  {id:646, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$630", kw:"red velvet terciopelo rojo redvelvet"},
-  {id:647, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150", kw:"red velvet terciopelo rojo redvelvet"},
-  {id:648, name:"Pastel Redondo Premium", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"red velvet terciopelo rojo redvelvet"},
-  {id:649, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"napolitano napolitana neapolitan tricolor"},
-  {id:650, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"napolitano napolitana neapolitan tricolor"},
-  {id:651, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"napolitano napolitana neapolitan tricolor"},
-  {id:652, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,150", kw:"napolitano napolitana neapolitan tricolor"},
-  {id:653, name:"Pastel Redondo Premium", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"napolitano napolitana neapolitan tricolor"},
-
+  {id:629, name:"Pastel Redondo", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"trilogia trilogy tres sabores"},
+  {id:630, name:"Pastel Redondo", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"trilogia trilogy tres sabores"},
+  {id:631, name:"Pastel Redondo", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"trilogia trilogy tres sabores"},
+  {id:632, name:"Pastel Redondo", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250", kw:"trilogia trilogy tres sabores"},
+  {id:633, name:"Pastel Redondo", sub:"Trilogía", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"trilogia trilogy tres sabores"},
+  {id:634, name:"Pastel Redondo", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"vainilla durazno peach melocoton"},
+  {id:635, name:"Pastel Redondo", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"vainilla durazno peach melocoton"},
+  {id:636, name:"Pastel Redondo", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"vainilla durazno peach melocoton"},
+  {id:637, name:"Pastel Redondo", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250", kw:"vainilla durazno peach melocoton"},
+  {id:638, name:"Pastel Redondo", sub:"Vainilla/Durazno", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"vainilla durazno peach melocoton"},
+  {id:639, name:"Pastel Redondo", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"red velvet terciopelo rojo redvelvet"},
+  {id:640, name:"Pastel Redondo", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"red velvet terciopelo rojo redvelvet"},
+  {id:641, name:"Pastel Redondo", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"red velvet terciopelo rojo redvelvet"},
+  {id:642, name:"Pastel Redondo", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250", kw:"red velvet terciopelo rojo redvelvet"},
+  {id:643, name:"Pastel Redondo", sub:"Red Velvet", cat:"premium", desc:"Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"red velvet terciopelo rojo redvelvet"},
+  {id:644, name:"Pastel Redondo", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'6"', persons:"4–5", price:"$400", kw:"napolitano napolitana neapolitan tricolor"},
+  {id:645, name:"Pastel Redondo", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'8"', persons:"8–10", price:"$500", kw:"napolitano napolitana neapolitan tricolor"},
+  {id:646, name:"Pastel Redondo", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'10"', persons:"12–15", price:"$600", kw:"napolitano napolitana neapolitan tricolor"},
+  {id:647, name:"Pastel Redondo", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'12"', persons:"20–25", price:"$1,250", kw:"napolitano napolitana neapolitan tricolor"},
+  {id:648, name:"Pastel Redondo", sub:"Napolitano", cat:"premium", desc:"Sabor Napolitano: Chocolate + Vainilla + Red Velvet. Relleno: Crema Chantilly o Crema de Queso. Toppings sin costo incluidos.", size:'14"', persons:"40–50", price:"$1,650", kw:"napolitano napolitana neapolitan tricolor"},
   // ── 3 LECHES (por separado de Zanahoria) ───────────────────────
   {id:670, name:"Pastel 3 Leches", sub:"Redondo", cat:"tresleches", desc:"Relleno de Crema Chantilly ligero (incluido). Sin toppings sin costo.", size:'6"', persons:"4–5", price:"$450", kw:"redondo round"},
   {id:671, name:"Pastel 3 Leches", sub:"Redondo", cat:"tresleches", desc:"Relleno de Crema Chantilly ligero (incluido). Sin toppings sin costo.", size:'10"', persons:"12–15", price:"$650", kw:"redondo round"},
@@ -759,7 +751,7 @@ function jumpToSection(title) {
 
 // Map product categories/names to guia section titles
 var guiaSectionMap = {
-  'premium': 'Sabores Clásicos',
+  'premium': 'Sabores — Redondos y Jacobino',
   'tresleches': '3 Leches — Redondo',
   'zanahoria': 'Zanahoria — Redondo',
   'temporada': 'Pasteles de Temporada',
@@ -787,7 +779,7 @@ function irAProducto(pid) {
 
   // Try to match by product name or category keywords
   var searchTerms = [prod.name.toLowerCase()];
-  if (prod.cat === 'premium') searchTerms.push('sabores clásicos', 'sabores premium');
+  if (prod.cat === 'premium') searchTerms.push('sabores', 'redondos y jacobino');
   if (prod.cat === 'tresleches') searchTerms.push('3 leches');
   if (prod.cat === 'zanahoria') searchTerms.push('zanahoria');
   if (prod.cat === 'temporada') searchTerms.push('temporada');
@@ -1182,17 +1174,19 @@ render();
 </div>
 
 
-<!-- SABORES CLASICOS -->
-<div class="guia-block" data-keywords="clasico clasicos vainilla chocolate combinado redondo jacobino 6 8 10 12 14 pulgadas seis ocho diez doce catorce pastel relleno chantilly crema queso fresa piña pina coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
+<!-- SABORES REDONDOS -->
+<div class="guia-block" data-keywords="clasico clasicos premium vainilla chocolate combinado moca trilogia napolitano red velvet redvelvet durazno redondo jacobino 6 8 10 12 14 pulgadas seis ocho diez doce catorce pastel relleno chantilly crema queso fresa piña pina coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>Sabores Clásicos — Redondos y Jacobino</span>
+    <span>Sabores — Redondos y Jacobino</span>
     <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
-      <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado</span>
+      <span class="guia-tag">Sabores: Vainilla · Chocolate · Combinado · Moca · Trilogía · Vainilla/Durazno · Red Velvet · Napolitano</span>
+      <span class="guia-tag yellow">Napolitano: solo en presentación circular, NO en Jacobino</span>
       <span class="guia-tag">Relleno incluido: Crema Chantilly o Crema de Queso</span>
       <span class="guia-tag green">Toppings sin costo: M. Fresa · M. Cereza · M. Frambuesa · Nutella · Durazno</span>
+      <span class="guia-tag">Mismo precio en todos los sabores — sin recargo por sabor</span>
     </div>
     <table class="guia-table">
       <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
@@ -1202,34 +1196,6 @@ render();
         <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$500</td><td class="extra">+$80</td><td class="extra">+$60</td><td class="extra">+$180</td></tr>
         <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$600</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$230</td></tr>
         <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,250</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
-        <tr><td class="medida">14"</td><td>40–50</td><td class="precio">$1,650</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- SABORES PREMIUM -->
-<div class="guia-block" data-keywords="clasico clasicos vainilla chocolate combinado redondo jacobino 6 8 10 12 14 pulgadas seis ocho diez doce catorce pastel relleno chantilly crema queso fresa piña pina coco nuez cajeta platano cheesecake toppings mermelada cereza frambuesa nutella durazno precio cotizar">
-  <div class="guia-block-title" onclick="toggleBlock(this)">
-    <span>Sabores Premium — Redondos y Jacobino</span>
-    <span class="toggle-icon">+</span>
-  </div>
-  <div class="guia-block-body">
-    <div class="guia-info">
-      <span class="guia-tag">Sabores: Trilogía · Moca · Vainilla/Durazno · Red Velvet · Vainilla/M. Fresa · Vainilla/M. Frambuesa</span>
-      <span class="guia-tag yellow">Napolitano: solo en presentación circular, NO en Jacobino</span>
-      <span class="guia-tag">Relleno incluido: Crema Chantilly o Crema de Queso</span>
-      <span class="guia-tag green">Toppings sin costo: M. Fresa · M. Cereza · M. Frambuesa · Nutella · Durazno</span>
-      <span class="guia-tag yellow">Trilogía y Red Velvet: +$30 sobre precio clásico en 6"-10"</span>
-    </div>
-    <table class="guia-table">
-      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Fresa / Piña / Coco / Nuez / Cajeta</th><th>+ Relleno Plátano</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
-      <tbody>
-        <tr><td class="medida">Jacobino</td><td>1</td><td class="precio">$190</td><td class="extra">+$40</td><td class="extra">+$20</td><td class="extra red">No aplica</td></tr>
-        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$400</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$150</td></tr>
-        <tr><td class="medida">8"</td><td>8–10</td><td class="precio">$500</td><td class="extra">+$80</td><td class="extra">+$60</td><td class="extra">+$180</td></tr>
-        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$600</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$230</td></tr>
-        <tr><td class="medida">12" (Trilogía: $1,250)</td><td>20–25</td><td class="precio">$1,150</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
         <tr><td class="medida">14"</td><td>40–50</td><td class="precio">$1,650</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
       </tbody>
     </table>
