@@ -999,6 +999,7 @@ function render() {
       const img = imgStore[p.id];
       const isCotizar = p.price === 'A cotizar';
       const isExtra = p.cat === 'extras';
+      const flavorTitle = p.cat === 'premium' && p.sub && p.sub.indexOf(',') === -1;
       return `<div class="card">
         ${!isExtra ? `
         <div class="img-slot" onclick="triggerUpload(${p.id})" title="Clic para agregar foto">
@@ -1007,13 +1008,18 @@ function render() {
         </div>` : ''}
         <div class="cb">
           <span class="badge ${catBadge[p.cat]}">${catLabels[p.cat]}</span>
+          ${flavorTitle ? `
+          <div class="cn">${p.size} · ${p.sub}</div>
+          <div class="cs">${p.name}</div>
+          ` : `
           <div class="cn">${p.name}</div>
           ${p.sub?`<div class="cs">${p.sub}</div>`:''}
+          `}
           <div class="cd" id="desc-${p.id}">${p.desc}</div>
           <button class="ver-mas" onclick="toggleDesc(${p.id},this)">Ver más</button>
           ${p.note?`<div class="cnote${p.cat==='flores'||p.cat==='follajes'?' red':''}">${p.cat==='flores'||p.cat==='follajes'?'':' ⚠️ '}${p.note}</div>`:''}
           <div class="cf" style="margin-top:${p.note?'5px':'0'}">
-            <div><div class="csize">${p.size}</div>${p.persons?`<div class="cpers">${p.persons} pers.</div>`:''}</div>
+            <div>${flavorTitle ? '' : `<div class="csize">${p.size}</div>`}${p.persons?`<div class="cpers">${p.persons} pers.</div>`:''}</div>
             <div style="text-align:right">
               <div class="cprice${isCotizar?' cotizar':''}">${p.price}</div>
               ${(p.cat==='flores'||p.cat==='follajes')?'<div style="font-size:10px;color:#e53935;font-weight:600;margin-top:2px">Precio por tallo</div>':''}
