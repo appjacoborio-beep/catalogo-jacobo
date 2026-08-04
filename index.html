@@ -339,10 +339,10 @@ const products = [
   {id:22, name:"Barra Napolitana",      sub:"Chocolate, Vainilla y Red Velvet", cat:"especiales", desc:"Relleno: Crema de Queso o Chantilly.", size:"Barra", persons:"8–10", price:"$500", kw:"chocolate vainilla red velvet terciopelo barra napolitana neapolitan"},
 
   // ── PLANCHAS TRADICIONALES ────────────────────────────────────
-  {id:23, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido. Crema de Queso +$200.", size:"1/4 plancha", persons:"20–25", price:"$950", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
-  {id:24, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido. Crema de Queso +$200.", size:"1/2 plancha", persons:"50", price:"$1,500", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
-  {id:25, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido. Crema de Queso +$200.", size:"3/4 plancha", persons:"70", price:"$2,150", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
-  {id:26, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido. Crema de Queso +$300.", size:"1 plancha", persons:"90–100", price:"$2,800", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
+  {id:23, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido.", size:"1/4 plancha", persons:"20–25", price:"$950", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
+  {id:24, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido.", size:"1/2 plancha", persons:"50", price:"$1,500", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
+  {id:25, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido.", size:"3/4 plancha", persons:"70", price:"$2,150", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
+  {id:26, name:"Plancha Tradicional",   sub:"Vainilla, Chocolate, Combinado, Moca, Trilogía, Napolitano", cat:"especiales", desc:"Chantilly incluido.", size:"1 plancha", persons:"90–100", price:"$2,800", kw:"vainilla chocolate combinado moca trilogia napolitano plancha rectangular sheet cake tradicional"},
 
   // ── PLANCHAS ZANAHORIA ────────────────────────────────────────
   {id:27, name:"Plancha Zanahoria",     sub:"Chantilly o Crema de Queso", cat:"especiales", desc:"Sin toppings sin costo.", size:"1/4 plancha", persons:"20–25", price:"$1,200", kw:"chantilly whip crema queso cream cheese plancha zanahoria carrot"},
@@ -617,12 +617,6 @@ const products = [
   {id:226, name:"Doble Relleno Cheesecake · Plancha 1/2", sub:"", cat:"extras", desc:"Doble relleno de cheesecake en media plancha.", size:"1/2 plancha", persons:"", price:"+$500", kw:"doble relleno cheesecake queso"},
   {id:227, name:"Doble Relleno Cheesecake · Plancha 3/4", sub:"", cat:"extras", desc:"Doble relleno de cheesecake en tres cuartos de plancha.", size:"3/4 plancha", persons:"", price:"+$600", kw:"doble relleno cheesecake queso"},
   {id:228, name:"Doble Relleno Cheesecake · Plancha Completa", sub:"", cat:"extras", desc:"Doble relleno de cheesecake en plancha completa.", size:"1 plancha", persons:"", price:"+$700", kw:"doble relleno cheesecake queso"},
-
-  // Crema de Queso en Planchas Tradicionales
-  {id:230, name:"Crema de Queso · Plancha Trad. 1/4", sub:"Plancha tradicional", cat:"extras", desc:"Upgrade a crema de queso en plancha tradicional cuarto.", size:"1/4 plancha", persons:"", price:"+$200", kw:"crema queso cream cheese plancha"},
-  {id:231, name:"Crema de Queso · Plancha Trad. 1/2", sub:"Plancha tradicional", cat:"extras", desc:"Upgrade a crema de queso en plancha tradicional media.", size:"1/2 plancha", persons:"", price:"+$200", kw:"crema queso cream cheese plancha"},
-  {id:232, name:"Crema de Queso · Plancha Trad. 3/4", sub:"Plancha tradicional", cat:"extras", desc:"Upgrade a crema de queso en plancha tradicional tres cuartos.", size:"3/4 plancha", persons:"", price:"+$200", kw:"crema queso cream cheese plancha"},
-  {id:233, name:"Crema de Queso · Plancha Trad. Completa", sub:"Plancha tradicional", cat:"extras", desc:"Upgrade a crema de queso en plancha tradicional completa.", size:"1 plancha", persons:"", price:"+$300", kw:"crema queso cream cheese plancha"},
 
   // Crema de Queso en Planchas 3 Leches
   {id:235, name:"Crema de Queso · Plancha 3L 1/4", sub:"Plancha 3 Leches", cat:"extras", desc:"Upgrade a crema de queso en plancha 3 leches cuarto.", size:"1/4 plancha", persons:"", price:"+$150", kw:"crema queso cream cheese plancha tres leches"},
@@ -1325,12 +1319,12 @@ render();
       <span class="guia-tag yellow">Decorado con Soletas: +$60 · Decorado de Merengues: +$60</span>
     </div>
     <table class="guia-table">
-      <thead><tr><th>Medida</th><th>Porciones</th><th>Con Chantilly</th><th>Con Crema de Queso</th><th>+ Relleno extra (Fresa/Piña/Coco/Nuez/Cajeta/Nutella)</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio</th><th>+ Relleno extra (Fresa/Piña/Coco/Nuez/Cajeta/Nutella)</th><th>+ Doble Relleno Cheesecake</th></tr></thead>
       <tbody>
-        <tr><td class="medida">1/4 plancha</td><td>20–25</td><td class="precio">$950</td><td class="precio">$1,150</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
-        <tr><td class="medida">1/2 plancha</td><td>50</td><td class="precio">$1,500</td><td class="precio">$1,700</td><td class="extra">+$200</td><td class="extra">+$500</td></tr>
-        <tr><td class="medida">3/4 plancha</td><td>70</td><td class="precio">$2,150</td><td class="precio">$2,350</td><td class="extra">+$200</td><td class="extra">+$600</td></tr>
-        <tr><td class="medida">1 plancha</td><td>90–100</td><td class="precio">$2,800</td><td class="precio">$3,100</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
+        <tr><td class="medida">1/4 plancha</td><td>20–25</td><td class="precio">$950</td><td class="extra">+$200</td><td class="extra">+$300</td></tr>
+        <tr><td class="medida">1/2 plancha</td><td>50</td><td class="precio">$1,500</td><td class="extra">+$200</td><td class="extra">+$500</td></tr>
+        <tr><td class="medida">3/4 plancha</td><td>70</td><td class="precio">$2,150</td><td class="extra">+$200</td><td class="extra">+$600</td></tr>
+        <tr><td class="medida">1 plancha</td><td>90–100</td><td class="precio">$2,800</td><td class="extra">+$200</td><td class="extra">+$700</td></tr>
       </tbody>
     </table>
   </div>
