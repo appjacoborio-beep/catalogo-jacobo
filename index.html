@@ -211,6 +211,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
     <button class="chip" onclick="setFilter('premium',this)">🎂 Pasteles</button>
     <button class="chip" onclick="setFilter('tresleches',this)">🥛 3 Leches</button>
     <button class="chip" onclick="setFilter('zanahoria',this)">🥕 Zanahoria</button>
+    <button class="chip" onclick="setFilter('besodeangel',this)">👼 Beso de Ángel</button>
     <button class="chip" onclick="setFilter('temporada',this)">🍂 Temporada</button>
     <button class="chip" onclick="setFilter('pisos',this)">🏛️ Pisos</button>
     <button class="chip" onclick="setFilter('especiales',this)">❤️ Corazón / Plancha</button>
@@ -323,6 +324,10 @@ const products = [
   {id:672, name:"Pastel Zanahoria", sub:"Redondo", cat:"zanahoria", desc:"Relleno de Crema de Queso o Chantilly (incluido). Sin toppings sin costo.", size:'6"', persons:"4–5", price:"$450", kw:"redondo round"},
   {id:673, name:"Pastel Zanahoria", sub:"Redondo", cat:"zanahoria", desc:"Relleno de Crema de Queso o Chantilly (incluido). Sin toppings sin costo.", size:'10"', persons:"12–15", price:"$650", kw:"redondo round"},
   {id:674, name:"Pastel Zanahoria", sub:"Redondo", cat:"zanahoria", desc:"Relleno de Crema de Queso o Chantilly (incluido). Sin toppings sin costo.", size:'12"', persons:"20–25", price:"$1,300", kw:"redondo round"},
+
+  // ── BESO DE ÁNGEL (3 Leches relleno de flan) ────────────────────
+  {id:675, name:"Pastel Beso de Ángel", sub:"Redondo", cat:"besodeangel", desc:"3 Leches relleno de flan (incluido). No se admite fruta, mermelada ni cajeta.", size:'6"', persons:"4–5", price:"$650", kw:"beso de angel tres leches 3 leches flan redondo round"},
+  {id:676, name:"Pastel Beso de Ángel", sub:"Redondo", cat:"besodeangel", desc:"3 Leches relleno de flan (incluido). No se admite fruta, mermelada ni cajeta.", size:'10"', persons:"12–15", price:"$1,030", kw:"beso de angel tres leches 3 leches flan redondo round"},
 
   // ── PASTELES DE PISOS ─────────────────────────────────────────
   {id:15, name:"Pastel 2 Pisos — A",    sub:"Inferior 10\" + Superior 6\"", cat:"pisos", desc:"Depósito de bases $350 (devuelto con nota). Sabores y rellenos a elección. Precio a cotizar.", size:"2 pisos", persons:"~50", price:"$2,800", note:"Depósito bases $350", kw:"boda wedding cake dos pisos"},
@@ -687,8 +692,8 @@ const rellenos = [
 ];
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
-const catLabels = {premium:"Pastel",tresleches:"3 Leches",zanahoria:"Zanahoria",temporada:"Temporada",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
-const catBadge  = {premium:"b-premium",tresleches:"b-tresleches",zanahoria:"b-zanahoria",temporada:"b-temporada",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes"};
+const catLabels = {premium:"Pastel",tresleches:"3 Leches",zanahoria:"Zanahoria",besodeangel:"Beso de Ángel",temporada:"Temporada",pisos:"Pisos",especiales:"Esp./Plancha",crepas:"Crepas",tartas:"Tarta/Flan",postres:"Postre",mini:"Mini Postre",gelatinas:"Gelatina",pan:"Pan Variado",extras:"Extra / Relleno"};
+const catBadge  = {premium:"b-premium",tresleches:"b-tresleches",zanahoria:"b-zanahoria",besodeangel:"b-besodeangel",temporada:"b-temporada",pisos:"b-pisos",especiales:"b-especiales",crepas:"b-crepas",tartas:"b-tartas",postres:"b-postres",mini:"b-mini",gelatinas:"b-gelatinas",pan:"b-pan",extras:"b-extras",flores:"b-flores",follajes:"b-follajes"};
 
 // URL del Apps Script Web App que guarda las fotos en el Google Sheet compartido
 // (para que todos vean las mismas imágenes, sin importar el navegador/dispositivo)
@@ -748,6 +753,7 @@ var guiaSectionMap = {
   'premium': 'Sabores — Redondos y Jacobino',
   'tresleches': '3 Leches — Redondo',
   'zanahoria': 'Zanahoria — Redondo',
+  'besodeangel': 'Beso de Ángel — Redondo',
   'temporada': 'Pasteles de Temporada',
   'pisos': 'Pasteles de Pisos',
   'especiales': 'Planchas Tradicionales',
@@ -776,6 +782,7 @@ function irAProducto(pid) {
   if (prod.cat === 'premium') searchTerms.push('sabores', 'redondos y jacobino');
   if (prod.cat === 'tresleches') searchTerms.push('3 leches');
   if (prod.cat === 'zanahoria') searchTerms.push('zanahoria');
+  if (prod.cat === 'besodeangel') searchTerms.push('beso de angel');
   if (prod.cat === 'temporada') searchTerms.push('temporada');
   if (prod.cat === 'especiales') {
     if (prod.name.toLowerCase().indexOf('plancha') >= 0) searchTerms.push('plancha');
@@ -955,6 +962,7 @@ function getFiltered() {
       premium:    'pastel redondo cake torta',
       tresleches: 'tres leches pastel humedo',
       zanahoria:  'zanahoria carrot cake',
+      besodeangel: 'beso de angel tres leches flan',
       temporada:  'temporada estacional edicion especial',
       pisos:      'pisos boda wedding cake niveles',
       especiales: 'plancha corazon cuadrado sheet cake',
@@ -1235,6 +1243,28 @@ render();
         <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$450</td><td class="extra">+$60</td><td class="extra">+$40</td><td class="extra">+$200</td></tr>
         <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$650</td><td class="extra">+$100</td><td class="extra">+$80</td><td class="extra">+$380</td></tr>
         <tr><td class="medida">12"</td><td>20–25</td><td class="precio">$1,300</td><td class="extra">+$200</td><td class="extra">+$200</td><td class="extra">+$580</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BESO DE ÁNGEL -->
+<div class="guia-block" data-keywords="beso de angel tres leches 3 leches flan redondo 6 10 pulgadas seis diez nuez coco precio cotizar">
+  <div class="guia-block-title" onclick="toggleBlock(this)">
+    <span>Beso de Ángel — Redondo</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="guia-block-body">
+    <div class="guia-info">
+      <span class="guia-tag">Base: 3 Leches relleno de flan (incluido)</span>
+      <span class="guia-tag red">No se admite: fruta, mermelada ni cajeta</span>
+      <span class="guia-tag green">Sí se admite: Nuez o Coco (con costo extra)</span>
+    </div>
+    <table class="guia-table">
+      <thead><tr><th>Medida</th><th>Porciones</th><th>Precio base</th><th>+ Relleno Nuez o Coco</th></tr></thead>
+      <tbody>
+        <tr><td class="medida">6"</td><td>4–5</td><td class="precio">$650</td><td class="extra">+$60</td></tr>
+        <tr><td class="medida">10"</td><td>12–15</td><td class="precio">$1,030</td><td class="extra">+$100</td></tr>
       </tbody>
     </table>
   </div>
