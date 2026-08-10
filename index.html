@@ -181,6 +181,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
     <button class="nav-tab active" onclick="switchView('guia',this)">Guía de Precios</button>
     <button class="nav-tab" onclick="switchView('catalogo',this)">Catálogo</button>
     <button class="nav-tab" onclick="switchView('temporada',this)">🍂 Temporada</button>
+    <button class="nav-tab" onclick="switchView('disenos',this)">🎨 Diseños</button>
   </nav>
 </header>
 
@@ -244,6 +245,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 <div class="count" id="count-label"></div>
 <div class="grid" id="grid"></div>
 
+</main>
+</div>
+
+<div id="disenos-section" style="display:none">
+<main class="main">
+  <div style="margin-bottom:1.25rem">
+    <h2 style="font-size:20px;font-weight:700;margin:0">Catálogo de Diseños</h2>
+    <p style="color:var(--text2);font-size:13px;margin-top:4px">Diseños disponibles en sucursal — muéstraselos al cliente para que elija por número, en vez de pedir "decoración sencilla".</p>
+  </div>
+  <div id="disenos-groups"></div>
 </main>
 </div>
 
@@ -703,6 +714,44 @@ const FOTOS_API = 'https://script.google.com/macros/s/AKfycbz_KRk5h9gd0zidGf1dHR
 let activeFilter = "todos";
 let imgStore = {};
 
+// ─── DISEÑOS (galería de decoraciones en sucursal) ─────────────────────────
+const designGroups = [
+  { key:"redondos", label:"Pasteles Redondos", ids:[9001,9002,9003,9004,9005,9006,9007,9008,9009,9010,9011,9012,9013,9014,9015] },
+  { key:"planchas", label:"Planchas", ids:[9016,9017,9018,9019,9020,9021,9022,9023,9024,9025] },
+  { key:"corazon", label:"Corazón / Cuadrado", ids:[9026,9027,9028,9029,9030,9031,9032,9033] },
+  { key:"pisos", label:"Pisos", ids:[9034,9035,9036,9037,9038] },
+];
+// Numeración global de "Diseño #N" (no reinicia por grupo)
+const designNumbers = {};
+(function(){
+  let n = 1;
+  designGroups.forEach(g => g.ids.forEach(id => { designNumbers[id] = n++; }));
+})();
+
+function renderDesigns() {
+  const cont = document.getElementById('disenos-groups');
+  if (!cont) return;
+  cont.innerHTML = designGroups.map(g => {
+    const cards = g.ids.map(id => {
+      const img = imgStore[id];
+      const num = designNumbers[id];
+      return `<div class="card">
+        <div class="img-slot" onclick="triggerUpload(${id})" title="Clic para agregar foto">
+          ${img ? `<img src="${img}" alt="Diseño ${num}"/>` :
+            `<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/></svg><span>Agregar foto</span>`}
+        </div>
+        <div class="cb" style="padding:10px 12px">
+          <div class="cn" style="font-size:14px">Diseño #${num}</div>
+        </div>
+      </div>`;
+    }).join('');
+    return `<div style="margin-bottom:1.75rem">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">${g.label}</h3>
+      <div class="grid">${cards}</div>
+    </div>`;
+  }).join('');
+}
+
 
 function toggleCats() {
   const panel = document.getElementById('cats-panel');
@@ -717,11 +766,16 @@ function switchView(view, btn) {
   btn.classList.add('active');
   const catalog = document.getElementById('catalog-section');
   const guia = document.getElementById('guia-section');
+  const disenos = document.getElementById('disenos-section');
+  catalog.style.display = 'none';
+  guia.style.display = 'none';
+  disenos.style.display = 'none';
   if (view === 'catalogo' || view === 'temporada') {
     catalog.style.display = 'block';
-    guia.style.display = 'none';
+  } else if (view === 'disenos') {
+    disenos.style.display = 'block';
+    renderDesigns();
   } else {
-    catalog.style.display = 'none';
     guia.style.display = 'block';
   }
   if (view === 'temporada') {
@@ -1095,6 +1149,7 @@ function uploadToCloudinary(id, file) {
     if (data.secure_url) {
       imgStore[id] = data.secure_url;
       render();
+      renderDesigns();
       guardarFotoCompartida(id, data.secure_url);
     } else {
       console.error('Respuesta de Cloudinary sin secure_url:', data);
@@ -1142,6 +1197,7 @@ function cargarFotosCompartidas() {
           imgStore[id] = data[id];
         });
         render();
+        renderDesigns();
       }
     })
     .catch(function(err){
