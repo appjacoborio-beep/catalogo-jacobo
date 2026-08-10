@@ -252,7 +252,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 <main class="main">
   <div style="margin-bottom:1.25rem">
     <h2 style="font-size:20px;font-weight:700;margin:0">Catálogo de Diseños</h2>
-    <p style="color:var(--text2);font-size:13px;margin-top:4px">Diseños disponibles en sucursal — muéstraselos al cliente para que elija por número, en vez de pedir "decoración sencilla".</p>
+    <p style="color:var(--text2);font-size:13px;margin-top:4px">Diseños sugeridos, por si el cliente no sabe cuál elegir — que señale el número que le guste.</p>
   </div>
   <div id="disenos-groups"></div>
 </main>
@@ -716,10 +716,11 @@ let imgStore = {};
 
 // ─── DISEÑOS (galería de decoraciones en sucursal) ─────────────────────────
 const designGroups = [
-  { key:"redondos", label:"Pasteles Redondos", ids:[9001,9002,9003,9004,9005,9006,9007,9008,9009,9010,9011,9012,9013,9014,9015] },
-  { key:"planchas", label:"Planchas", ids:[9016,9017,9018,9019,9020,9021,9022,9023,9024,9025] },
-  { key:"corazon", label:"Corazón / Cuadrado", ids:[9026,9027,9028,9029,9030,9031,9032,9033] },
-  { key:"pisos", label:"Pisos", ids:[9034,9035,9036,9037,9038] },
+  { key:"redondos", label:"Pasteles Redondos", ids:[9001,9002,9003,9004,9005,9006,9007,9008,9009,9010] },
+  { key:"planchas", label:"Planchas", ids:[9011,9012,9013] },
+  { key:"corazon", label:"Corazón / Cuadrado", ids:[9014,9015,9016] },
+  { key:"2pisos", label:"2 Pisos", ids:[9017,9018] },
+  { key:"3pisos", label:"3 Pisos", ids:[9019,9020] },
 ];
 // Numeración global de "Diseño #N" (no reinicia por grupo)
 const designNumbers = {};
