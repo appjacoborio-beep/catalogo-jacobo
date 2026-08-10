@@ -1133,36 +1133,75 @@ function triggerUpload(id) {
   input.click();
 }
 
+// Reduce el tamaño de la imagen antes de subirla (máx. 1600px de lado más largo,
+// comprimida a JPEG calidad 0.82). Así ninguna foto de celular pasa del límite
+// de 10MB de Cloudinary, sin que nadie tenga que redimensionarla a mano.
+function resizeImage(file, maxDim, quality) {
+  return new Promise(function(resolve) {
+    // Si ya es un archivo chico, ni lo tocamos
+    if (file.size <= 1.5 * 1024 * 1024) { resolve(file); return; }
+    var img = new Image();
+    var url = URL.createObjectURL(file);
+    img.onload = function() {
+      URL.revokeObjectURL(url);
+      var w = img.width, h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w >= h) { h = Math.round(h * (maxDim / w)); w = maxDim; }
+        else { w = Math.round(w * (maxDim / h)); h = maxDim; }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      canvas.toBlob(function(blob) {
+        if (blob) {
+          resolve(new File([blob], (file.name || 'foto').replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' }));
+        } else {
+          resolve(file); // si algo falla, mandamos el original y que Cloudinary decida
+        }
+      }, 'image/jpeg', quality);
+    };
+    img.onerror = function() {
+      URL.revokeObjectURL(url);
+      resolve(file); // no se pudo leer como imagen; mandamos el original
+    };
+    img.src = url;
+  });
+}
+
 function uploadToCloudinary(id, file) {
   var slot = document.querySelector('.img-slot[onclick*="triggerUpload(' + id + ')"]');
   if (slot) slot.innerHTML = '<div style="color:#6e6e73;font-size:11px;padding:1rem;text-align:center">Subiendo...</div>';
 
-  var formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', 'jacobo_catalogo');
+  resizeImage(file, 1600, 0.82).then(function(finalFile) {
+    var formData = new FormData();
+    formData.append('file', finalFile);
+    formData.append('upload_preset', 'jacobo_catalogo');
 
-  fetch('https://api.cloudinary.com/v1_1/doh4x3jnz/image/upload', {
-    method: 'POST',
-    body: formData
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data) {
-    if (data.secure_url) {
-      imgStore[id] = data.secure_url;
+    fetch('https://api.cloudinary.com/v1_1/doh4x3jnz/image/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (data.secure_url) {
+        imgStore[id] = data.secure_url;
+        render();
+        renderDesigns();
+        guardarFotoCompartida(id, data.secure_url);
+      } else {
+        console.error('Respuesta de Cloudinary sin secure_url:', data);
+        var msg = (data && data.error && data.error.message) ? data.error.message : 'Error desconocido';
+        alert('Error al subir la imagen: ' + msg);
+        render();
+      }
+    })
+    .catch(function(err){
+      console.error('Error de red al subir a Cloudinary:', err);
+      alert('Error de conexión al subir la imagen.');
       render();
-      renderDesigns();
-      guardarFotoCompartida(id, data.secure_url);
-    } else {
-      console.error('Respuesta de Cloudinary sin secure_url:', data);
-      var msg = (data && data.error && data.error.message) ? data.error.message : 'Error desconocido';
-      alert('Error al subir la imagen: ' + msg);
-      render();
-    }
-  })
-  .catch(function(err){
-    console.error('Error de red al subir a Cloudinary:', err);
-    alert('Error de conexión al subir la imagen.');
-    render();
+    });
   });
 }
 
