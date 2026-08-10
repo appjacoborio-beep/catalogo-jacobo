@@ -721,7 +721,7 @@ let imgStore = {};
 const designGroups = [
   { key:"redondos", label:"Pasteles Redondos", ids:[9001,9002,9003,9004,9005,9006,9007,9008,9009,9010] },
   { key:"planchas", label:"Planchas", ids:[9011,9012,9013] },
-  { key:"corazon", label:"Corazón / Cuadrado", ids:[9014,9015,9016] },
+  { key:"corazon", label:"Corazón", ids:[9014,9015,9016] },
   { key:"2pisos", label:"2 Pisos", ids:[9017,9018] },
   { key:"3pisos", label:"3 Pisos", ids:[9019,9020] },
 ];
@@ -845,12 +845,18 @@ function descargarCatalogoDisenos() {
         var x = pad + col * (cellW + pad);
         var cy = y + row * (cellH + pad);
 
-        // Imagen recortada tipo "cover" dentro de cellW x imgH
+        // Fondo del cuadro (por si la imagen no lo llena completo)
+        ctx.fillStyle = '#f7f7f8';
+        ctx.fillRect(x, cy, cellW, imgH);
+
+        // Imagen completa, sin recortar tipo "contain": se ajusta dentro del
+        // cuadro y se centra, dejando margen en vez de cortar (pasteles de
+        // pisos, que son altos, se ven completos igual que los demás).
         var iw = it.img.width, ih = it.img.height;
-        var scale = Math.max(cellW / iw, imgH / ih);
-        var sw = cellW / scale, sh = imgH / scale;
-        var sx = (iw - sw) / 2, sy = (ih - sh) / 2;
-        ctx.drawImage(it.img, sx, sy, sw, sh, x, cy, cellW, imgH);
+        var scale = Math.min(cellW / iw, imgH / ih);
+        var dw = iw * scale, dh = ih * scale;
+        var dx = x + (cellW - dw) / 2, dy = cy + (imgH - dh) / 2;
+        ctx.drawImage(it.img, 0, 0, iw, ih, dx, dy, dw, dh);
 
         ctx.strokeStyle = '#e5e5e5';
         ctx.strokeRect(x, cy, cellW, imgH);
