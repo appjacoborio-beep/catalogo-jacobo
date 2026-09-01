@@ -343,6 +343,12 @@ const products = [
   {id:675, name:"Pastel Beso de Ángel", sub:"Redondo", cat:"besodeangel", desc:"3 Leches relleno de flan (incluido). No se admite fruta, mermelada ni cajeta.", size:'6"', persons:"4–5", price:"$650", kw:"beso de angel tres leches 3 leches flan redondo round"},
   {id:676, name:"Pastel Beso de Ángel", sub:"Redondo", cat:"besodeangel", desc:"3 Leches relleno de flan (incluido). No se admite fruta, mermelada ni cajeta.", size:'10"', persons:"12–15", price:"$1,030", kw:"beso de angel tres leches 3 leches flan redondo round"},
 
+  // ── TEMPORADA: PAN DE MUERTO ─────────────────────────────────────
+  {id:679, name:"Pan de Muerto", sub:"Tradicional", cat:"temporada", desc:"Pan de muerto clásico, receta tradicional.", size:"Pieza", persons:"", price:"$40", kw:"pan de muerto tradicional dia de muertos temporada"},
+  {id:680, name:"Pan de Muerto", sub:"Relleno Inyectado", cat:"temporada", desc:"Pan de muerto con relleno inyectado.", size:"Pieza", persons:"", price:"$50", kw:"pan de muerto relleno inyectado dia de muertos temporada"},
+  {id:681, name:"Pan de Muerto", sub:"Relleno Queso", cat:"temporada", desc:"Pan de muerto relleno de queso — de los que van en vitrina.", size:"Pieza", persons:"", price:"$100", kw:"pan de muerto relleno queso vitrina dia de muertos temporada"},
+  {id:682, name:"Pan de Muerto", sub:"Mini Tradicional", cat:"temporada", desc:"Pan de muerto tradicional, presentación mini.", size:"Pieza mini", persons:"", price:"$25", kw:"pan de muerto mini tradicional dia de muertos temporada"},
+
   // ── PASTELES DE PISOS ─────────────────────────────────────────
   {id:15, name:"Pastel 2 Pisos — A",    sub:"Inferior 10\" + Superior 6\"", cat:"pisos", desc:"Depósito de bases $350 (devuelto con nota). Sabores y rellenos a elección. Precio a cotizar.", size:"2 pisos", persons:"~50", price:"$2,800", note:"Depósito bases $350", kw:"boda wedding cake dos pisos"},
   {id:16, name:"Pastel 2 Pisos — B",    sub:"Inferior 12\" + Superior 8\"", cat:"pisos", desc:"Depósito de bases $350 (devuelto con nota). Sabores y rellenos a elección. Precio a cotizar.", size:"2 pisos", persons:"~70", price:"$3,850", note:"Depósito bases $350", kw:"boda wedding cake dos pisos"},
@@ -661,6 +667,7 @@ const products = [
   {id:259, name:"Decorado con Soletas", sub:"Decoración exterior", cat:"extras", desc:"Decorado del contorno del pastel con soletas.", size:"Cualquier tamaño", persons:"", price:"+$60", kw:"soletas ladyfingers decoracion"},
   {id:260, name:"Decorado de Enjambre", sub:"Decoración exterior", cat:"extras", desc:"Decorado exterior del pastel estilo enjambre.", size:"Cualquier tamaño", persons:"", price:"+$30", kw:"enjambre drip decoracion"},
   {id:261, name:"Cubierta en Fondant", sub:"Personalización", cat:"extras", desc:"Cubierta completa del pastel en fondant. Precio varía según tamaño y diseño.", size:"A cotizar", persons:"", price:"A cotizar", kw:"fondant cubierta"},
+  {id:678, name:"Cubierta de Queso Crema", sub:"Decoración exterior", cat:"extras", desc:"Cubierta exterior completa del pastel en queso crema, en vez de chantilly. Disponible también en otros tamaños (precio pendiente de confirmar).", size:'10"', persons:"", price:"+$180", kw:"cubierta queso crema cream cheese frosting exterior"},
   {id:262, name:"Figura en Fondant", sub:"Personalización", cat:"extras", desc:"Figura decorativa hecha a mano en fondant. Precio varía según complejidad.", size:"A cotizar", persons:"", price:"A cotizar", kw:"fondant figura topper personalizacion decoracion"},
 ];
 
@@ -1551,19 +1558,22 @@ render();
 </div>
 
 <!-- TEMPORADA -->
-<div class="guia-block" data-keywords="temporada estacional edicion especial navidad halloween dia de muertos san valentin precio cotizar">
+<div class="guia-block" data-keywords="temporada estacional edicion especial navidad halloween dia de muertos san valentin pan de muerto tradicional inyectado relleno queso mini precio cotizar">
   <div class="guia-block-title" onclick="toggleBlock(this)">
     <span>Pasteles de Temporada</span>
     <span class="toggle-icon">+</span>
   </div>
   <div class="guia-block-body">
     <div class="guia-info">
-      <span class="guia-tag yellow">Sección para pasteles de edición limitada / temporada — se agregan conforme se definan</span>
+      <span class="guia-tag yellow">Sección para productos de edición limitada / temporada — se agregan y se activan conforme se acerca la fecha</span>
     </div>
     <table class="guia-table">
       <thead><tr><th>Producto</th><th>Medida</th><th>Precio</th><th>Nota</th></tr></thead>
       <tbody>
-        <tr><td colspan="4" style="text-align:center;color:var(--text3);padding:14px">Sin productos de temporada activos por ahora</td></tr>
+        <tr><td>Pan de Muerto Tradicional</td><td>Pieza</td><td class="precio">$40</td><td></td></tr>
+        <tr><td>Pan de Muerto Relleno Inyectado</td><td>Pieza</td><td class="precio">$50</td><td></td></tr>
+        <tr><td>Pan de Muerto Relleno Queso</td><td>Pieza</td><td class="precio">$100</td><td class="nota">Los que van en vitrina</td></tr>
+        <tr><td>Pan de Muerto Mini Tradicional</td><td>Pieza mini</td><td class="precio">$25</td><td></td></tr>
       </tbody>
     </table>
   </div>
@@ -1835,6 +1845,7 @@ render();
         <tr><td>Cake Topper</td><td class="precio">$120</td><td></td></tr>
         <tr><td>Esferas</td><td class="precio">$120</td><td class="nota">Por color</td></tr>
         <tr><td>Cubierta en Fondant</td><td class="precio">A cotizar</td><td></td></tr>
+        <tr><td>Cubierta de Queso Crema · 10"</td><td class="precio">+$180</td><td class="nota">Otros tamaños: precio pendiente de confirmar</td></tr>
         <tr><td>Figura en Fondant</td><td class="precio">A cotizar</td><td></td></tr>
       </tbody>
     </table>
